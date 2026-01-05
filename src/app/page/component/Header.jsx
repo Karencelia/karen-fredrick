@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <nav className="fixed top-0 left-0 w-full bg-white shadow-sm z-50 px-10 py-4 flex items-center justify-between">
       {/* Logo (MC) */}
-      <div className="text-xl font-serif font-bold">M | C</div>
+      <div className="text-xl font-serif font-bold">K | F</div>
 
       {/* Links */}
       <ul className="hidden md:flex gap-x-6 text-gray-700 font-medium">

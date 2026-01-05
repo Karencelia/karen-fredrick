@@ -25,80 +25,61 @@ export default function Directions() {
       </div>
 
       {/* Directions Text */}
-      <div className="flex flex-col items-center justify-center text-gray-700 leading-relaxed mb-10">
-        <h3 className="text-2xl font-semibold mb-6 text-center">
+      <div className="px-20 flex flex-col items-center justify-center text-gray-700 leading-relaxed mb-10">
+        <h3 className="text-xl bg-green-800 text-white rounded-md p-2 font-semibold mb-6 text-center">
           By Public Transport
         </h3>
 
-        <p className="mb-2">
-          When coming to the city of Uyo by bus, we highly suggest you use the
-          Orange-branded <strong>AKTC (Akwa Ibom Transport Company)</strong> bus,
-          if there’s one in your area.
+        <div className="text-center">
+          <p className="mb-2 text-[18px]">
+          When coming to the city of Uyo by bus, we highly suggest you use the Orange branded AKTC (Akwa Ibom Transport Company) bus, 
+          if there's one in your area. When in Uyo, you may choose to stop at the Water Board, as most passengers getting into the town would, instead of following the bus to their motor park. And right there, at the Water Board, you may take tricycles or minibuses to Plaza. Plaza is a major reference point in Uyo. 
         </p>
 
-        <p className="mb-2">
-          Upon arriving in Uyo, you may choose to stop at the <strong>Water Board</strong>,
-          as most passengers entering the city do, instead of following the bus
-          to its motor park. From the Water Board, you can take tricycles or
-          minibuses to <strong>Plaza</strong>, a major reference point in Uyo.
+        <p className="mb-2 text-[18px]">
+          At Plaza, you may join minibuses to Oron road. Stop and alight at "Four Lane” junction. Carefully cross to the other lane of the road, into Four Lane. 
+          Take a drop with a tricycle to Jubilee Gardens. Usually, just drops/chatter make it to Jubilee Gardens.
         </p>
-
-        <p className="mb-2">
-          At Plaza, board a minibus heading towards <strong>Oron Road</strong>.
-          Alight at the <strong>“Four Lane” junction</strong>. Carefully cross to
-          the opposite side of the road into Four Lane.
-        </p>
-
-        <p>
-          From there, take a tricycle to <strong>Jubilee Gardens</strong>.
-          Typically, tricycles or drop buses can take you directly to the
-          destination.
-        </p>
+        </div>
       </div>
+
+      <div className="border-b-2 w-full text-green-700 px-30 mb-10"></div>
 
       {/* Directions Text */}
       <div className="flex flex-col items-center justify-center text-gray-700 leading-relaxed mb-10">
-        <h3 className="text-2xl font-semibold mb-6 text-center">
+        <h3 className="text-xl bg-green-800 text-white rounded-md p-2 font-semibold mb-6 text-center">
           By Car
         </h3>
 
-        <p className="mb-2">
-          When coming to the city of Uyo by bus, we highly suggest you use the
-          Orange-branded <strong>AKTC (Akwa Ibom Transport Company)</strong> bus,
-          if there’s one in your area.
+        <p className="mb-2 text-[18px]">
+          From the East,  either from Umuahia--past Umudike, or from Aba, we recommend you drive through IkotEkpene. Before long, you'll be in Uyo. You should notice the state's pecialist hospital. Drive past it, straight towards the popular Plaza, and onto Oron Road.
         </p>
 
-        <p className="mb-2">
-          Upon arriving in Uyo, you may choose to stop at the <strong>Water Board</strong>,
-          as most passengers entering the city do, instead of following the bus
-          to its motor park. From the Water Board, you can take tricycles or
-          minibuses to <strong>Plaza</strong>, a major reference point in Uyo.
+        <p className="mb-2 text-[18px]">
+          Turn left at the very obvious, wide "FOUR LANE EXPRESS" and continue driving until "LABOR MARKET JUNCTION". Turn right into the labour market junction, and drive straight until Jubilee Gardens to your right
         </p>
 
-        <p className="mb-2">
-          At Plaza, board a minibus heading towards <strong>Oron Road</strong>.
-          Alight at the <strong>“Four Lane” junction</strong>. Carefully cross to
-          the opposite side of the road into Four Lane.
+        <p className="mb-2 text-[18px]">
+          From Ibeno, make your way to Eket, and use the A Trunk express way. A straight road, drive for about 30 minutes until you arrive Ikom Imam roundabout, Uyo. Turn right unto Abak Road, and drive to the State Secretariat. 
+          Turn right toward IBB Avenue, and at the roundabout turn right again, aiming for the very next round about. When there, take the third exit unto Udo Udoma Avenue.
         </p>
 
-        <p>
-          From there, take a tricycle to <strong>Jubilee Gardens</strong>.
-          Typically, tricycles or drop buses can take you directly to the
-          destination.
+        <p className="text-[18px]">
+          Drive across Oron onto Four Lane Express Way, until you get to Labor Market Junction. Turn right into the labour market junction, and drive straight until Jubilee Gardens to your right 
         </p>
       </div>
-
+<div className="border-b-2 w-full text-green-700 px-30 mb-10"></div>
       {/* Directions Text */}
       <div className="flex flex-col items-center justify-center text-gray-700 leading-relaxed">
-        <h3 className="text-2xl font-semibold mb-6 text-center">
+        <h3 className="text-xl bg-green-800 text-white rounded-md p-2 font-semibold mb-6 text-center">
           Parking
         </h3>
 
-        <p className="mb-2">
+        <p className="mb-2 text-[18px]">
           Our venue has ample space for parking. So free parking will be available for those coming with vehicles, except it's an airborne type.
         </p>
 
-        <p className="mb-6">
+        <p className="mb-6 text-[18px]">
          <strong>PLEASE NOTE: </strong>It won't be best to park outside the garden, on the street, as that might risk your vehicle to damage.
         </p>
       </div>

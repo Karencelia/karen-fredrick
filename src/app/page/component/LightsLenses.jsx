@@ -9,7 +9,7 @@ export default function LightsAndLenses() {
       </h2>
 
       {/* Description */}
-      <p className="max-w-2xl mx-auto text-gray-700 leading-relaxed mb-8">
+      <p className="max-w-2xl mx-auto text-[18px] text-gray-700 leading-relaxed mb-8">
         We’ve put decent effort to capture and bring you our special day. And while at it, 
         we clocked that you may have sights we may never see. From travels, to food, and 
         emotions, help us capture our wedding from angles only you have.
@@ -24,12 +24,12 @@ export default function LightsAndLenses() {
       </a>
 
       {/* Quote */}
-      <div className="mt-16 text-gray-600 italic max-w-xl mx-auto">
-        <p>
+      <div className="mt-16 text-gray-600 italic max-w-xl mx-auto text-[18px]">
+        <p className="">
           “My dear one is mine, and I am his.”
         </p>
         <p className="mt-4 not-italic font-semibold text-black">
-          Song of Solomon 2:16 (NWT)gv v cg bnhmbgvvb b
+          Song of Solomon 2:16 (NWT)
         </p>
       </div>
     </section>
