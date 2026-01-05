@@ -9,7 +9,7 @@ const quicksand = Quicksand({
 })
 
 export const metadata = {
-  title: 'My Wedding Website',
+  title: 'Our Wedding Website',
   description: 'Wedding Website for Karen & Fredrick',
 }
 
