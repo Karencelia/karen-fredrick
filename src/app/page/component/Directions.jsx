@@ -80,7 +80,7 @@ export default function Directions() {
         </p>
 
         <p className="mb-6 text-[18px]">
-         <strong>PLEASE NOTE: </strong>It won't be best to park outside the garden, on the street, as that might risk your vehicle to damage.
+         <span className="font-bold">PLEASE NOTE: </span>It won't be best to park outside the garden, on the street, as that might risk your vehicle to damage.
         </p>
       </div>
     </section>

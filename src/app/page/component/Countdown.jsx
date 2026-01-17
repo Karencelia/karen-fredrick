@@ -28,13 +28,32 @@ export default function Countdown({ targetDate }) {
       });
     }
 
-    updateTimer(); // Run immediately
+    updateTimer();
     const interval = setInterval(updateTimer, 1000);
     return () => clearInterval(interval);
   }, [targetDate]);
 
   return (
-    <div className="absolute top-20 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-10 text-white px-6 py-3 rounded-lg z-20 flex gap-4 text-base font-semibold tracking-widest">
+    <div
+      className="
+        absolute
+        top-16 md:top-20
+        left-1/2
+        transform -translate-x-1/2
+        bg-black bg-opacity-10
+        text-white
+        px-4 md:px-6
+        py-2 md:py-3
+        rounded-lg
+        z-20
+        flex
+        gap-3 md:gap-4
+        text-sm md:text-base
+        font-semibold
+        tracking-widest
+        backdrop-blur-sm
+      "
+    >
       <div>{timeLeft.days}D</div>
       <div>{timeLeft.hours}H</div>
       <div>{timeLeft.minutes}M</div>
