@@ -65,8 +65,8 @@ export default function Rsvp() {
               <p className="font-bold text-[14px] md:text-[16px] mb-6">
                 BANK TRANSFER (Naira)
               </p>
-              <p className="text-[14px] mb-1">WEMA</p>
-              <p className="text-[14px] mb-1">0092092890</p>
+              <p className="text-[14px] mb-1">WEMA Bank</p>
+              <p className="text-[14px] mb-1">0250373633</p>
               <p className="text-[14px]">Fredrick Imoni</p>
             </div>
 
