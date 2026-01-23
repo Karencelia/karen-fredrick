@@ -35,7 +35,7 @@ export default function Gallery() {
   const images = galleryData[activeCategory]
 
   return (
-    <section className="py-16 px-6 md:px-16 bg-white">
+    <section id="gallery" className="py-16 px-6 md:px-16 bg-white">
       <h2 className="text-center text-4xl md:text-5xl font-serif mb-8">
         GALLERY
       </h2>

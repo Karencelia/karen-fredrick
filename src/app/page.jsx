@@ -8,7 +8,7 @@ import Header from './page/component/Header'
 import Home from './page/component/Home'
 import LightsLenses from './page/component/LightsLenses'
 import OurStory from './page/component/OurStory'
-import FAQ from './page/component/FAQ'
+import Questions from './page/component/Questions'
 import Schedule from './page/component/Schedule'
 import Rsvp from './page/component/Rsvp'
 
@@ -38,7 +38,7 @@ export default function OnePage() {
           <Home />
           <LightsLenses />
           <OurStory />
-          <FAQ />
+          <Questions />
           <Schedule />
           <Rsvp />
         </>

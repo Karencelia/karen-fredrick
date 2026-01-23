@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function FAQ() {
+export default function Questions() {
   const [openIndex, setOpenIndex] = useState(null);
 
   const faqs = [
@@ -37,7 +37,8 @@ export default function FAQ() {
   };
 
   return (
-    <div id="faq" className="flex flex-col items-center mt-16 lg:mt-5 px-4">
+    <section id="questions">
+      <div className="flex flex-col items-center mt-16 lg:mt-5 px-4">
       <div className="w-full max-w-[90%] sm:max-w-[75%] text-left sm:text-center ">
         <h2 className="text-[24px] sm:text-[32px] md:text-[50px] font-black text-[#0c005b]">
           QUESTIONS
@@ -78,5 +79,6 @@ export default function FAQ() {
         </div>
       </div>
     </div>
+    </section>
   );
 }

@@ -121,9 +121,9 @@ export default function OurStory() {
         </p>
 
         <div className="mt-16 text-gray-600 italic max-w-xl mx-auto text-center text-[16px] md:text-[18px]">
-          <p>“My dear one is mine, and I am his.”</p>
+          <p>“I found the one my heart loves.”</p>
           <p className="mt-4 not-italic font-semibold text-black">
-            Song of Solomon 2:16 (NWT)
+            Song of Solomon 3:4 (NWT)
           </p>
         </div>
       </div>

@@ -47,7 +47,7 @@ export default function Schedule() {
           </span>
           <p className="text-xs tracking-widest mb-2">DRESS THEME</p>
           <p className="text-sm md:text-base max-w-xs text-center">
-            Dress To Impress With A Pop Of Color – White or Bottle Green
+            White | Bottle Green
             <br />
             <i>All Guests</i>
           </p>
