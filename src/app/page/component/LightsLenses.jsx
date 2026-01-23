@@ -1,4 +1,6 @@
 "use client";
+import Gallery from "./Gallery";
+
 
 export default function LightsAndLenses() {
   return (
@@ -15,14 +17,6 @@ export default function LightsAndLenses() {
         emotions, help us capture our wedding from angles only you have.
       </p>
 
-      {/* Button */}
-      <a
-        href="#gallery"
-        className="inline-block bg-yellow-800 text-white font-semibold px-6 py-3 rounded shadow-md hover:bg-yellow-700 transition text-sm md:text-base"
-      >
-        View Our Gallery
-      </a>
-
       {/* Quote */}
       <div className="mt-16 text-gray-600 italic max-w-xl mx-auto text-[16px] md:text-[18px] px-4 md:px-0">
         <p>
@@ -32,6 +26,7 @@ export default function LightsAndLenses() {
           Song of Solomon 2:16 (NWT)
         </p>
       </div>
+      <Gallery />
     </section>
   );
 }

@@ -8,14 +8,9 @@ export default function Schedule() {
         THE SCHEDULE
       </h2>
 
-      {/* Event Number */}
-      <p className="text-xs tracking-[0.3em] text-gray-500 mb-6">
-        EVENT #1
-      </p>
-
       {/* Event Name */}
       <h3 className="text-3xl md:text-4xl font-[cursive] italic mb-16 md:mb-20">
-        Wedding
+        Wedding Ceremony
       </h3>
 
       {/* Details Grid */}

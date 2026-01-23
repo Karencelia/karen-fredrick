@@ -116,12 +116,6 @@ export default function OurStory() {
 
       {/* Image + Quote */}
       <div className="flex flex-col justify-center items-center w-full mt-16 px-4">
-        <img
-          src="facebook.jpg"
-          alt="Wedding Hero"
-          className="object-cover w-full max-w-[650px]"
-        />
-
         <p className="mt-6 text-[16px] md:text-[18px] text-center">
           My Dears, Keep Receipts. You Never Know When They'll Come Handy
         </p>
@@ -135,7 +129,7 @@ export default function OurStory() {
       </div>
 
       {/* Initials */}
-      <div className="flex justify-center items-center mt-10 px-4">
+      <div className="flex justify-center items-center mt-5 px-4">
         <img
           src="initials.png"
           alt="Wedding Hero"
