@@ -60,7 +60,7 @@ export default function Gallery() {
       {/* Gallery Images */}
       <div
         className="relative flex justify-center items-center flex-wrap"
-        style={{ gap: '-50px' }} // deployment-safe negative gap
+        style={{ gap: '-50px' }} // safe for deployment
       >
         {images.map((src, i) => (
           <motion.div
@@ -68,9 +68,7 @@ export default function Gallery() {
             whileHover={{ scale: 1.05 }}
             onClick={() => setLightboxImage(src)}
             className="relative shadow-xl border-4 border-gray-200 w-64 md:w-80 cursor-pointer overflow-hidden"
-            style={{
-              transform: `rotate(${rotations[i % rotations.length]}deg)`, // slight slant
-            }}
+            style={{ transform: `rotate(${rotations[i % rotations.length]}deg)` }}
           >
             <img
               src={src}
