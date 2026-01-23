@@ -5,7 +5,7 @@ export default function OurStory() {
     <section id="our-story" className="w-full bg-white py-20 px-6 md:px-20">
       {/* Title */}
       <h2 className="text-3xl md:text-4xl font-[cursive] text-center text-gray-400 mb-20">
-        Our Story
+        Our Love Story
       </h2>
 
       {/* Images */}
@@ -27,7 +27,7 @@ export default function OurStory() {
       {/* Description – His Story */}
       <div className="w-full flex flex-col text-center px-4 md:px-20 mt-20">
         <h3 className="font-bold text-[22px] md:text-[25px] mx-auto text-gray-700 mb-4">
-          How we started Talking!
+          How We Met - Fredrick 
         </h3>
 
         <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">Hey,</p>
@@ -51,9 +51,9 @@ export default function OurStory() {
           She sent me her number. I was surprised Uno... Maybe she was the crafty one after all!
         </p>
 
-        <h3 className="font-bold text-[22px] md:text-[25px] mx-auto text-gray-700 mt-10 mb-4">
-          How we Met!
-        </h3>
+        {/* <h3 className="font-bold text-[22px] md:text-[25px] mx-auto text-gray-700 mt-10 mb-4">
+          How We Met - Fredrick 
+        </h3> */}
 
         <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
           After a period of Chats, Uno how it is na 🌚, We agreed to meet at the KH...
@@ -86,7 +86,7 @@ export default function OurStory() {
       {/* Description – Her Story */}
       <div className="w-full flex flex-col text-center px-4 md:px-20 mt-20">
         <h3 className="font-bold text-[22px] md:text-[25px] mx-auto text-gray-700 mb-4">
-          How We Met
+          How We Met - Karen 
         </h3>
 
         <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">

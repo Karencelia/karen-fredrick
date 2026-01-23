@@ -26,7 +26,6 @@ const galleryData = {
   ],
 }
 
-// Predefined small rotations for polaroid effect
 const rotations = [-5, 3, 2, -3, 4, -2]
 
 export default function Gallery() {
@@ -59,14 +58,19 @@ export default function Gallery() {
       </div>
 
       {/* Gallery Images */}
-      <div className="relative flex justify-center items-center gap-[-50px] flex-wrap">
+      <div
+        className="relative flex justify-center items-center flex-wrap"
+        style={{ gap: '-50px' }} // deployment-safe negative gap
+      >
         {images.map((src, i) => (
           <motion.div
             key={i}
             whileHover={{ scale: 1.05 }}
             onClick={() => setLightboxImage(src)}
             className="relative shadow-xl border-4 border-gray-200 w-64 md:w-80 cursor-pointer overflow-hidden"
-            style={{ gap: '-50px' }}
+            style={{
+              transform: `rotate(${rotations[i % rotations.length]}deg)`, // slight slant
+            }}
           >
             <img
               src={src}
@@ -83,7 +87,11 @@ export default function Gallery() {
           className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[9999] cursor-pointer"
           onClick={() => setLightboxImage(null)}
         >
-          <img src={lightboxImage} alt="Selected" className="max-h-[90%] max-w-[90%] object-contain shadow-2xl" />
+          <img
+            src={lightboxImage}
+            alt="Selected"
+            className="max-h-[90%] max-w-[90%] object-contain shadow-2xl"
+          />
         </div>
       )}
     </section>
