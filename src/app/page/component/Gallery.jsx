@@ -5,21 +5,26 @@ import { motion } from 'framer-motion'
 
 const galleryData = {
   Proposals: [
-    '/proposal-bridesBack.jpeg',
-    '/proposal-standing.jpeg',
-    '/proposal-bridesBack.jpeg',
+    '/proposal3.jpeg',
+    '/proposal1.jpeg',
+    '/proposal2.jpeg',
+    '/proposal-half.jpeg',
+    '/proposal5.jpeg',
   ],
   'Love in Bloom': [
-    '/proposal-standing.jpeg',
-    '/proposal-bridesBack.jpeg',
+    '/bloom1.jpeg',
+    '/bloom2.jpeg',
+    'bloom3.jpeg',
   ],
   'First Dates': [
-    '/proposal-standing.jpeg',
-    '/proposal-bridesBack.jpeg',
+    '/date5.jpeg',
+    '/date4.jpeg',
+    '/date2.jpeg',
+    '/date3.jpeg',
   ],
   Adventures: [
-    '/proposal-standing.jpeg',
-    '/proposal-bridesBack.jpeg',
+    '/date6.jpeg',
+    '/adventures1.jpeg',
   ],
   'Marriage Registry': [
     '/proposal-standing.jpeg',
@@ -40,8 +45,8 @@ export default function Gallery() {
         GALLERY
       </h2>
 
-      {/* Category Tabs */}
-      <div className="flex justify-center gap-4 mb-12 flex-wrap">
+      {/* Category Tabs for Desktop */}
+      <div className="hidden md:flex justify-center gap-4 mb-12 flex-wrap">
         {Object.keys(galleryData).map((cat) => (
           <button
             key={cat}
@@ -57,10 +62,25 @@ export default function Gallery() {
         ))}
       </div>
 
+      {/* Dropdown for Mobile */}
+      <div className="md:hidden mb-12 flex justify-center">
+        <select
+          value={activeCategory}
+          onChange={(e) => setActiveCategory(e.target.value)}
+          className="border border-black rounded-full px-4 py-2 font-medium text-black"
+        >
+          {Object.keys(galleryData).map((cat) => (
+            <option key={cat} value={cat}>
+              {cat}
+            </option>
+          ))}
+        </select>
+      </div>
+
       {/* Gallery Images */}
       <div
         className="relative flex justify-center items-center flex-wrap"
-        style={{ gap: '-50px' }} 
+        style={{ gap: '-50px' }}
       >
         {images.map((src, i) => (
           <motion.div

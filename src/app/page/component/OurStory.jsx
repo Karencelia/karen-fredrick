@@ -12,14 +12,14 @@ export default function OurStory() {
       <div className="flex items-center justify-center">
         <div className="flex flex-col md:flex-row items-center justify-center w-full gap-8 md:gap-30">
           <img
-            src="proposal-standing.jpeg"
-            alt="Wedding Hero"
-            className="object-cover w-full max-w-[300px] rounded-md"
+            src="date1.jpeg"
+            alt="Date 1"
+            className="object-cover w-full max-w-[300px] h-[450px] rounded-md"
           />
           <img
-            src="proposal-bridesBack.jpeg"
-            alt="Wedding Hero"
-            className="object-cover w-full max-w-[300px] rounded-md"
+            src="date6.jpeg"
+            alt="Date 2"
+            className="object-cover w-full max-w-[300px] h-[450px] rounded-md"
           />
         </div>
       </div>
