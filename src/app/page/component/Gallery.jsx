@@ -60,7 +60,7 @@ export default function Gallery() {
       {/* Gallery Images */}
       <div
         className="relative flex justify-center items-center flex-wrap"
-        style={{ gap: '-50px' }} // safe for deployment
+        style={{ gap: '-50px' }} 
       >
         {images.map((src, i) => (
           <motion.div
