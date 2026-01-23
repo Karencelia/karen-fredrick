@@ -66,7 +66,7 @@ export default function Gallery() {
             whileHover={{ scale: 1.05 }}
             onClick={() => setLightboxImage(src)}
             className="relative shadow-xl border-4 border-gray-200 w-64 md:w-80 cursor-pointer overflow-hidden"
-            style={{ transform: `rotate(${rotations[i % rotations.length]}deg)` }}
+            style={{ gap: '-50px' }}
           >
             <img
               src={src}
