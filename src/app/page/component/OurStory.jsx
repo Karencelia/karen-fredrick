@@ -8,19 +8,19 @@ export default function OurStory() {
   const questions = [
     {
       question: "What's your partner's favourite phrase or word to say??",
-      answer: "Ome, I love you. You are my Ikigai!",
+      answer: "Wo... I'm tired o 😂",
     },
     {
       question: "Using an Expression, how else would you tell your partner 'I Love you!",
-      answer: "Hugging tightly",
+      answer: "You are True North to me - Life does have more meaning because of you",
     },
     {
       question: "What's one word that comes to your mind when you think of your Baby? ",
-      answer: "My Ikigai",
+      answer: "Bubbles",
     },
     {
       question: "Your favourite memory of him/her?",
-      answer: "Our second date",
+      answer: "First Day I saw her - In the Rain 🌧️",
     }
   ];
 
