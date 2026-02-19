@@ -41,11 +41,11 @@ export default function Gallery() {
   const images = galleryData[activeCategory];
 
   /* ===============================
-     FETCH PHOTOS FROM DATABASE
+     FETCH PHOTOS FROM SUPABASE
   =============================== */
   const fetchPhotos = async () => {
     try {
-      const res = await fetch("/api/photos");
+      const res = await fetch("/api/photos"); // we will create this route
       const data = await res.json();
       setPhotos(data);
     } catch (error) {
@@ -68,6 +68,11 @@ export default function Gallery() {
       return;
     }
 
+    if (file.size > 5 * 1024 * 1024) {
+      alert("File too large! Max 5MB");
+      return;
+    }
+
     const reader = new FileReader();
     reader.onload = (e) => {
       setSelectedImage(e.target.result);
@@ -79,10 +84,13 @@ export default function Gallery() {
      HANDLE SUBMIT
   =============================== */
   const handleSubmit = async () => {
-    if (!guestName || !selectedImage) return;
+    if (!guestName || !selectedImage) {
+      alert("Please provide your name and select an image!");
+      return;
+    }
 
     try {
-      await fetch("/api/upload", {
+      const res = await fetch("/api/upload", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -92,13 +100,22 @@ export default function Gallery() {
         }),
       });
 
-      setSelectedImage(null);
-      setGuestName("");
-      setCaption("");
+      const data = await res.json();
 
-      fetchPhotos(); // refresh gallery
+      if (res.ok) {
+        // reset form
+        setSelectedImage(null);
+        setGuestName("");
+        setCaption("");
+
+        // refresh gallery
+        fetchPhotos();
+      } else {
+        alert(data.error || "Upload failed");
+      }
     } catch (error) {
       console.error("Upload failed:", error);
+      alert("Upload failed. Check console for details.");
     }
   };
 
@@ -153,9 +170,7 @@ export default function Gallery() {
               onClick={() => setLightboxImage(src)}
               className="relative shadow-xl border-4 border-gray-200 w-64 md:w-80 cursor-pointer overflow-hidden"
               style={{
-                transform: `rotate(${
-                  rotations[i % rotations.length]
-                }deg)`,
+                transform: `rotate(${rotations[i % rotations.length]}deg)`,
               }}
             >
               <img
@@ -173,14 +188,17 @@ export default function Gallery() {
         {photos.length > 0 && (
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
             {photos.map((photo) => (
-              <div key={photo.id} className="shadow-lg rounded-lg overflow-hidden">
+              <div
+                key={photo.id}
+                className="shadow-lg rounded-lg overflow-hidden"
+              >
                 <img
-                  src={photo.imageUrl}
-                  alt={photo.guestName}
+                  src={photo.image_url}
+                  alt={photo.guest_name}
                   className="w-full h-64 object-cover"
                 />
                 <div className="p-4">
-                  <p className="font-semibold">{photo.guestName}</p>
+                  <p className="font-semibold">{photo.guest_name}</p>
                   {photo.caption && (
                     <p className="text-sm text-gray-500">{photo.caption}</p>
                   )}
@@ -252,10 +270,7 @@ export default function Gallery() {
           className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[9999]"
           onClick={() => setLightboxImage(null)}
         >
-          <img
-            src={lightboxImage}
-            className="max-h-[90%] max-w-[90%]"
-          />
+          <img src={lightboxImage} className="max-h-[90%] max-w-[90%]" />
         </div>
       )}
     </>

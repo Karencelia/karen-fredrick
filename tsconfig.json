@@ -21,16 +21,26 @@
       {
         "name": "next"
       }
-    ]
+    ],
+
+    // ───────────────────────────────────────────────────────
+    // Added: Required for @/ alias to work in Next.js (App Router)
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+    // ───────────────────────────────────────────────────────
   },
   "include": [
-    "next-env.d.ts",
-    ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts",
-    "**/*.mts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
+  "next-env.d.ts",
+  ".next/types/**/*.ts",
+  ".next/dev/types/**/*.ts",
+  "**/*.mts",
+  "**/*.ts",
+  "**/*.tsx",
+  "**/*.js",
+  "**/*.jsx"
+],
   "exclude": [
     "node_modules"
   ]
