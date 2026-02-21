@@ -11,6 +11,7 @@ import OurStory from './page/component/OurStory'
 import Questions from './page/component/Questions'
 import Schedule from './page/component/Schedule'
 import Rsvp from './page/component/Rsvp'
+import WeddingWishes from './page/component/WellWishes'
 
 export default function OnePage() {
   const [showSplash, setShowSplash] = useState(true)
@@ -39,6 +40,7 @@ export default function OnePage() {
           <LightsLenses />
           <OurStory />
           <Questions />
+          <WeddingWishes />
           <Schedule />
           <Rsvp />
         </>
