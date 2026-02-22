@@ -3,7 +3,7 @@
 
 export default function Quote() {
   return (
-    <section id="lights-lenses" className="w-full bg-white py-6 px-6 md:px-20 text-center">
+    <section className="w-full bg-white py-6 px-6 md:px-20 text-center">
       
         {/* Intro Message */}
         <div className="flex flex-col items-center justify-center mt-6 md:mt-20 px-4">

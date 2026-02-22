@@ -88,10 +88,11 @@ export default function LightsAndLenses() {
   };
 
   /* ===============================
-     RETURN
+     RETURN 
   =============================== */
   return (
-    <div className="py-20 px-6 md:px-16 bg-[#f8f8f8]">
+    <section id="lights-lenses">
+      <div className="py-20 px-6 md:px-16 bg-[#f8f8f8]">
       <div className="max-w-6xl mx-auto">
 
         {/* ================= SHARE SECTION ================= */}
@@ -181,5 +182,6 @@ export default function LightsAndLenses() {
 
       </div>
     </div>
+    </section>
   );
 }
