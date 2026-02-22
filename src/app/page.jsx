@@ -6,12 +6,15 @@ import { AnimatePresence } from 'framer-motion'
 import WelcomeScreen from './page/component/WelcomeScreen'
 import Header from './page/component/Header'
 import Home from './page/component/Home'
+import Quote from './page/component/Quote'
 import LightsLenses from './page/component/LightsLenses'
+import Gallery from './page/component/Gallery'
 import OurStory from './page/component/OurStory'
 import Questions from './page/component/Questions'
 import Schedule from './page/component/Schedule'
 import Rsvp from './page/component/Rsvp'
 import WeddingWishes from './page/component/WellWishes'
+
 
 export default function OnePage() {
   const [showSplash, setShowSplash] = useState(true)
@@ -37,10 +40,12 @@ export default function OnePage() {
         <>
           <Header />
           <Home />
-          <LightsLenses />
+          <Quote />
           <OurStory />
+          <Gallery />
           <Questions />
           <WeddingWishes />
+          <LightsLenses />
           <Schedule />
           <Rsvp />
         </>

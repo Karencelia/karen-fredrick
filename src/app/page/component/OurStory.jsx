@@ -23,6 +23,10 @@ const [openIndexKaren, setOpenIndexKaren] = useState(null);
     {
       question: "Your favourite memory of him/her?",
       answer: "First Day I saw her - In the Rain 🌧️",
+    },
+    {
+      question: "What habit do you appreciate the most about him/her?",
+      answer: "Once she makes up her mind about something, she sticks to it.",
     }
   ];
 

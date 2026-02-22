@@ -15,10 +15,11 @@ const Header = () => {
 
         {/* Desktop Links */}
         <ul className="hidden md:flex gap-x-6 text-gray-700 font-medium">
-          <li><a href="#lights-lenses">Lights and Lenses</a></li>
-          <li><a href="#gallery">Gallery</a></li>
           <li><a href="#our-story">Our Story</a></li>
+          <li><a href="#gallery">Gallery</a></li>
           <li><a href="#questions">Q & A</a></li>
+          <li><a href="#well-wishes">Well Wishes</a></li>
+          <li><a href="#lights-lenses">Lights and Lenses</a></li>
           <li><a href="#schedule">Schedule</a></li>
         </ul>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 /* -----------------------------
@@ -30,96 +30,11 @@ export default function Gallery() {
   /* ===============================
      STATE
   =============================== */
-  const [photos, setPhotos] = useState([]);
   const [activeCategory, setActiveCategory] = useState("Proposals");
   const [lightboxImage, setLightboxImage] = useState(null);
-
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [guestName, setGuestName] = useState("");
-  const [caption, setCaption] = useState("");
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const images = galleryData[activeCategory];
-
-  /* ===============================
-     FETCH PHOTOS FROM SUPABASE
-  =============================== */
-  const fetchPhotos = async () => {
-    try {
-      const res = await fetch("/api/photos"); // we will create this route
-      const data = await res.json();
-      setPhotos(data);
-    } catch (error) {
-      console.error("Failed to fetch photos:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchPhotos();
-  }, []);
-
-  /* ===============================
-     HANDLE FILE
-  =============================== */
-  const handleFile = (file) => {
-    if (!file) return;
-
-    if (!file.type.startsWith("image/")) {
-      alert("Please select an image file");
-      return;
-    }
-
-    if (file.size > 5 * 1024 * 1024) {
-      alert("File too large! Max 5MB");
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      setSelectedImage(e.target.result);
-    };
-    reader.readAsDataURL(file);
-  };
-
-  /* ===============================
-     HANDLE SUBMIT
-  =============================== */
-  const handleSubmit = async () => {
-    if (!guestName || !selectedImage) {
-      alert("Please provide your name and select an image!");
-      return;
-    }
-
-    try {
-      const res = await fetch("/api/upload", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          image: selectedImage,
-          guestName,
-          caption,
-        }),
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        // reset form
-        setSelectedImage(null);
-        setGuestName("");
-        setCaption("");
-
-        // refresh gallery
-        fetchPhotos();
-      } else {
-        alert(data.error || "Upload failed");
-      }
-    } catch (error) {
-      console.error("Upload failed:", error);
-      alert("Upload failed. Check console for details.");
-    }
-  };
-
   return (
     <>
       {/* =========================
@@ -136,11 +51,10 @@ export default function Gallery() {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 border rounded-full font-medium transition-colors ${
-                activeCategory === cat
+              className={`px-4 py-2 border rounded-full font-medium transition-colors ${activeCategory === cat
                   ? "bg-black text-white"
                   : "border-black text-black hover:bg-gray-100"
-              }`}
+                }`}
             >
               {cat}
             </button>
@@ -166,146 +80,65 @@ export default function Gallery() {
         {/* =========================
    DESKTOP STACK (md and up)
 ========================= */}
-<div className="hidden md:flex relative justify-center items-center mb-24 h-[500px]">
+        <div className="hidden md:flex relative justify-center items-center mb-24 h-[500px]">
 
-  {/* Background Grey Sheets */}
-  <div className="absolute w-[360px] h-[440px] bg-gray-200 rotate-6 shadow-xl" />
-  <div className="absolute w-[360px] h-[440px] bg-gray-300 -rotate-6 shadow-xl" />
+          {/* Background Grey Sheets */}
+          <div className="absolute w-[360px] h-[440px] bg-gray-200 rotate-6 shadow-xl" />
+          <div className="absolute w-[360px] h-[440px] bg-gray-300 -rotate-6 shadow-xl" />
 
-  {images.slice(0, 3).map((src, i) => {
-    const baseZ = [10, 30, 20];
-    const positions = [
-      "-translate-x-24 rotate-[-8deg]",
-      "",
-      "translate-x-24 rotate-[6deg]",
-    ];
+          {images.slice(0, 3).map((src, i) => {
+            const baseZ = [10, 30, 20];
+            const positions = [
+              "-translate-x-24 rotate-[-8deg]",
+              "",
+              "translate-x-24 rotate-[6deg]",
+            ];
 
-    return (
-      <motion.div
-        key={i}
-        onHoverStart={() => setHoveredIndex(i)}
-        onHoverEnd={() => setHoveredIndex(null)}
-        whileHover={{ scale: 1.05, rotate: 0 }}
-        transition={{ type: "spring", stiffness: 200 }}
-        onClick={() => setLightboxImage(src)}
-        className={`absolute bg-white shadow-2xl border-8 border-gray-100
+            return (
+              <motion.div
+                key={i}
+                onHoverStart={() => setHoveredIndex(i)}
+                onHoverEnd={() => setHoveredIndex(null)}
+                whileHover={{ scale: 1.05, rotate: 0 }}
+                transition={{ type: "spring", stiffness: 200 }}
+                onClick={() => setLightboxImage(src)}
+                className={`absolute bg-white shadow-2xl border-8 border-gray-100
         w-[320px] h-[400px]
         ${positions[i]}`}
-        style={{
-          zIndex: hoveredIndex === i ? 50 : baseZ[i],
-        }}
-      >
-        <img
-          src={src}
-          alt={`Gallery ${i}`}
-          className="w-full h-full object-cover"
-        />
-      </motion.div>
-    );
-  })}
-</div>
-
-
-{/* =========================
-   MOBILE GRID (below md)
-========================= */}
-<div className="grid grid-cols-2 gap-4 md:hidden mb-16">
-  {images.map((src, i) => (
-    <motion.div
-      key={i}
-      whileHover={{ scale: 1.03 }}
-      onClick={() => setLightboxImage(src)}
-      className="bg-white shadow-lg p-2"
-    >
-      <img
-        src={src}
-        alt={`Gallery ${i}`}
-        className="w-full h-44 object-cover"
-      />
-    </motion.div>
-  ))}
-</div>
-
-        {/* =========================
-           SHARE SECTION
-      ========================== */}
-      <section className="py-20 px-6 md:px-16 bg-[#f8f8f8]">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl text-[#05472A] font-serif mb-6">
-            Share Your Pictures
-          </h2>
-
-          {!selectedImage && (
-            <label className="block border-2 border-dashed text-[#05472A] border-[#05472A] rounded-2xl p-10 cursor-pointer">
-              <input
-                type="file"
-                hidden
-                accept="image/*"
-                onChange={(e) => handleFile(e.target.files[0])}
-              />
-              Click to upload a photo
-            </label>
-          )}
-
-          {selectedImage && (
-            <div className="bg-white p-6 rounded-2xl shadow-md space-y-4">
-              <img
-                src={selectedImage}
-                className="w-full max-h-64 object-contain"
-              />
-
-              <input
-                type="text"
-                placeholder="Your Name"
-                value={guestName}
-                onChange={(e) => setGuestName(e.target.value)}
-                className="w-full border p-3 rounded-lg"
-              />
-
-              <input
-                type="text"
-                placeholder="Caption"
-                value={caption}
-                onChange={(e) => setCaption(e.target.value)}
-                className="w-full border p-3 rounded-lg"
-              />
-
-              <button
-                onClick={handleSubmit}
-                className="w-full bg-black text-white py-3 rounded-lg"
-              >
-                Share Photo
-              </button>
-            </div>
-          )}
-        </div>
-      </section>
-
-        {/* ===============================
-           DATABASE PHOTOS (Guests Uploads)
-        =============================== */}
-        {photos.length > 0 && (
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
-            {photos.map((photo) => (
-              <div
-                key={photo.id}
-                className="shadow-lg rounded-lg overflow-hidden"
+                style={{
+                  zIndex: hoveredIndex === i ? 50 : baseZ[i],
+                }}
               >
                 <img
-                  src={photo.image_url}
-                  alt={photo.guest_name}
-                  className="w-full h-64 object-cover"
+                  src={src}
+                  alt={`Gallery ${i}`}
+                  className="w-full h-full object-cover"
                 />
-                <div className="p-4">
-                  <p className="font-semibold">{photo.guest_name}</p>
-                  {photo.caption && (
-                    <p className="text-sm text-gray-500">{photo.caption}</p>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
+              </motion.div>
+            );
+          })}
+        </div>
+
+
+        {/* =========================
+   MOBILE GRID (below md)
+========================= */}
+        <div className="grid grid-cols-2 gap-4 md:hidden mb-16">
+          {images.map((src, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ scale: 1.03 }}
+              onClick={() => setLightboxImage(src)}
+              className="bg-white shadow-lg p-2"
+            >
+              <img
+                src={src}
+                alt={`Gallery ${i}`}
+                className="w-full h-44 object-cover"
+              />
+            </motion.div>
+          ))}
+        </div>
       </section>
 
 

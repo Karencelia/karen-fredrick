@@ -87,6 +87,7 @@ export default function WeddingWishes() {
 
   return (
     <section
+      id="well-wishes"
       className="min-h-screen px-6 py-16"
       style={{ background: config.background_color }}
     >
