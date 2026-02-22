@@ -7,9 +7,9 @@ const Header = () => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full bg-white shadow-sm z-50 px-6 md:px-10 py-4 flex items-center justify-between">
+      <nav className="fixed top-0 left-0 w-full bg-white shadow-sm z-50 px-6 md:px-10 py-2 flex items-center justify-between">
         {/* Logo */}
-        <div className="text-xl font-serif font-bold">
+        <div className="text-xl font-serif text-[#05472A] font-bold">
           <a href="#home">K | F</a>
         </div>
 
@@ -25,7 +25,7 @@ const Header = () => {
         {/* Desktop RSVP */}
         <a
           href="#rsvp"
-          className="hidden md:inline-block px-6 py-2 bg-black text-white rounded-full font-medium shadow"
+          className="hidden md:inline-block px-6 py-1 bg-[#05472A] text-white rounded-full font-medium shadow"
         >
           RSVP
         </a>
@@ -75,7 +75,7 @@ const Header = () => {
           <a
             onClick={() => setOpen(false)}
             href="#rsvp"
-            className="mt-4 px-6 py-3 bg-black text-white rounded-full text-center font-medium"
+            className="mt-4 w-[90px] px-6 py-2 bg-[#05472A] text-white rounded-full text-center font-medium"
           >
             RSVP
           </a>

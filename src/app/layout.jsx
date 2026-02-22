@@ -1,5 +1,6 @@
 import './globals.css'
 import { Quicksand } from 'next/font/google'
+import Header from './page/component/Header'
 
 // Import the Roboto font
 const quicksand = Quicksand({
@@ -16,7 +17,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={quicksand.className}>
-      <body>{children}</body>
+      <body>
+        <Header />
+        <main className="pt-0">
+          {children}
+        </main>
+      </body>
     </html>
   )
 }

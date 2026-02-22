@@ -34,30 +34,22 @@ export default function Countdown({ targetDate }) {
   }, [targetDate]);
 
   return (
-    <div
-      className="
-        absolute
-        top-16 md:top-20
-        left-1/2
-        transform -translate-x-1/2
-        bg-black bg-opacity-10
-        text-white
-        px-4 md:px-6
-        py-2 md:py-3
-        rounded-lg
-        z-20
-        flex
-        gap-3 md:gap-4
-        text-sm md:text-base
-        font-semibold
-        tracking-widest
-        backdrop-blur-sm
-      "
-    >
-      <div>{timeLeft.days}D</div>
-      <div>{timeLeft.hours}H</div>
-      <div>{timeLeft.minutes}M</div>
-      <div>{timeLeft.seconds}S</div>
-    </div>
+    <div className="
+    absolute
+    top-24 sm:top-32 md:top-20
+    left-1/2 transform -translate-x-1/2
+    bg-black bg-opacity-20 text-white
+    px-3 md:px-6 py-2 md:py-3
+    rounded-lg
+    z-20
+    flex gap-2 md:gap-4 text-xs sm:text-sm md:text-base
+    font-semibold tracking-widest
+    backdrop-blur-sm
+">
+  <div>{timeLeft.days}D</div>
+  <div>{timeLeft.hours}H</div>
+  <div>{timeLeft.minutes}M</div>
+  <div>{timeLeft.seconds}S</div>
+</div>
   );
 }

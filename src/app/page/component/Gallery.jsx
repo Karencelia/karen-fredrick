@@ -37,6 +37,7 @@ export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [guestName, setGuestName] = useState("");
   const [caption, setCaption] = useState("");
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const images = galleryData[activeCategory];
 
@@ -162,64 +163,80 @@ export default function Gallery() {
         </div>
 
         {/* Static Images */}
-        <div className="relative flex justify-center items-center flex-wrap gap-8">
-          {images.map((src, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ scale: 1.05 }}
-              onClick={() => setLightboxImage(src)}
-              className="relative shadow-xl border-4 border-gray-200 w-64 md:w-80 cursor-pointer overflow-hidden"
-              style={{
-                transform: `rotate(${rotations[i % rotations.length]}deg)`,
-              }}
-            >
-              <img
-                src={src}
-                alt={`Gallery ${i}`}
-                className="w-full h-full object-cover"
-              />
-            </motion.div>
-          ))}
-        </div>
+        {/* =========================
+   DESKTOP STACK (md and up)
+========================= */}
+<div className="hidden md:flex relative justify-center items-center mb-24 h-[500px]">
 
-        {/* ===============================
-           DATABASE PHOTOS (Guests Uploads)
-        =============================== */}
-        {photos.length > 0 && (
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
-            {photos.map((photo) => (
-              <div
-                key={photo.id}
-                className="shadow-lg rounded-lg overflow-hidden"
-              >
-                <img
-                  src={photo.image_url}
-                  alt={photo.guest_name}
-                  className="w-full h-64 object-cover"
-                />
-                <div className="p-4">
-                  <p className="font-semibold">{photo.guest_name}</p>
-                  {photo.caption && (
-                    <p className="text-sm text-gray-500">{photo.caption}</p>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </section>
+  {/* Background Grey Sheets */}
+  <div className="absolute w-[360px] h-[440px] bg-gray-200 rotate-6 shadow-xl" />
+  <div className="absolute w-[360px] h-[440px] bg-gray-300 -rotate-6 shadow-xl" />
 
-      {/* =========================
+  {images.slice(0, 3).map((src, i) => {
+    const baseZ = [10, 30, 20];
+    const positions = [
+      "-translate-x-24 rotate-[-8deg]",
+      "",
+      "translate-x-24 rotate-[6deg]",
+    ];
+
+    return (
+      <motion.div
+        key={i}
+        onHoverStart={() => setHoveredIndex(i)}
+        onHoverEnd={() => setHoveredIndex(null)}
+        whileHover={{ scale: 1.05, rotate: 0 }}
+        transition={{ type: "spring", stiffness: 200 }}
+        onClick={() => setLightboxImage(src)}
+        className={`absolute bg-white shadow-2xl border-8 border-gray-100
+        w-[320px] h-[400px]
+        ${positions[i]}`}
+        style={{
+          zIndex: hoveredIndex === i ? 50 : baseZ[i],
+        }}
+      >
+        <img
+          src={src}
+          alt={`Gallery ${i}`}
+          className="w-full h-full object-cover"
+        />
+      </motion.div>
+    );
+  })}
+</div>
+
+
+{/* =========================
+   MOBILE GRID (below md)
+========================= */}
+<div className="grid grid-cols-2 gap-4 md:hidden mb-16">
+  {images.map((src, i) => (
+    <motion.div
+      key={i}
+      whileHover={{ scale: 1.03 }}
+      onClick={() => setLightboxImage(src)}
+      className="bg-white shadow-lg p-2"
+    >
+      <img
+        src={src}
+        alt={`Gallery ${i}`}
+        className="w-full h-44 object-cover"
+      />
+    </motion.div>
+  ))}
+</div>
+
+        {/* =========================
            SHARE SECTION
       ========================== */}
       <section className="py-20 px-6 md:px-16 bg-[#f8f8f8]">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-serif mb-6">
+          <h2 className="text-4xl md:text-5xl text-[#05472A] font-serif mb-6">
             Share Your Pictures
           </h2>
 
           {!selectedImage && (
-            <label className="block border-2 border-dashed border-black rounded-2xl p-10 cursor-pointer">
+            <label className="block border-2 border-dashed text-[#05472A] border-[#05472A] rounded-2xl p-10 cursor-pointer">
               <input
                 type="file"
                 hidden
@@ -263,6 +280,34 @@ export default function Gallery() {
           )}
         </div>
       </section>
+
+        {/* ===============================
+           DATABASE PHOTOS (Guests Uploads)
+        =============================== */}
+        {photos.length > 0 && (
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {photos.map((photo) => (
+              <div
+                key={photo.id}
+                className="shadow-lg rounded-lg overflow-hidden"
+              >
+                <img
+                  src={photo.image_url}
+                  alt={photo.guest_name}
+                  className="w-full h-64 object-cover"
+                />
+                <div className="p-4">
+                  <p className="font-semibold">{photo.guest_name}</p>
+                  {photo.caption && (
+                    <p className="text-sm text-gray-500">{photo.caption}</p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
 
       {/* LIGHTBOX */}
       {lightboxImage && (

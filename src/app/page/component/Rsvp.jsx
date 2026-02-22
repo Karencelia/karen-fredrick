@@ -2,7 +2,7 @@
 
 export default function Rsvp() {
   return (
-    <section id="rsvp" className="w-full bg-black text-white py-20 px-6 md:px-20 text-center">
+    <section id="rsvp" className="w-full bg-[#05472A] text-white py-20 px-6 md:px-20 text-center">
       {/* RSVP Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 mt-20 gap-10">
         <div className="flex justify-center items-start">

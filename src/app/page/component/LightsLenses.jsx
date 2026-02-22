@@ -4,7 +4,19 @@ import Gallery from "./Gallery";
 
 export default function LightsAndLenses() {
   return (
-    <section id="lights-lenses" className="w-full bg-white py-20 px-6 md:px-20 text-center">
+    <section id="lights-lenses" className="w-full bg-white py-6 px-6 md:px-20 text-center">
+      
+        {/* Intro Message */}
+        <div className="flex flex-col items-center justify-center mt-6 md:mt-20 px-4">
+          <div className="border-b-1 border-black w-24 mb-4 md:mb-5"></div>
+
+          <div className="flex flex-col items-center justify-center text-[14px] sm:text-[16px] md:text-[18px] text-gray-700 mb-4 md:mb-5 px-2 text-center">
+            <p>My person,</p>
+            <p>We really can't wait to share our special day with you.</p>
+          </div>
+
+          <div className="border-b-1 border-black w-24 mb-8 md:mb-10"></div>
+        </div>
       {/* Title */}
       <h2 className="text-2xl md:text-4xl font-[cursive] text-gray-400 mb-6">
         Lights and Lenses
