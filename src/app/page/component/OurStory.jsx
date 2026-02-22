@@ -3,8 +3,10 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function OurStory() {
-    const [openIndex, setOpenIndex] = useState(null);
-  
+  const [openIndex, setOpenIndex] = useState(null);
+const [openIndexKaren, setOpenIndexKaren] = useState(null);
+
+
   const questions = [
     {
       question: "What's your partner's favourite phrase or word to say??",
@@ -24,9 +26,33 @@ export default function OurStory() {
     }
   ];
 
+  const questionsKaren = [
+    {
+      questionKaren: "What's your partner's favourite phrase or word to say??",
+      answerKaren: "Karen's Response",
+    },
+    {
+      questionKaren: "Using an Expression, how else would you tell your partner 'I Love you!",
+      answerKaren: "You are True North to me - Life does have more meaning because of you",
+    },
+    {
+      questionKaren: "What's one word that comes to your mind when you think of your Baby? ",
+      answerKaren: "Bubbles",
+    },
+    {
+      questionKaren: "Your favourite memory of him/her?",
+      answerKaren: "First Day I saw her - In the Rain 🌧️",
+    }
+  ];
+
   const toggleAnswer = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+
+  const toggleAnswerKaren = (index) => {
+  setOpenIndexKaren(openIndexKaren === index ? null : index);
+};
+
 
   return (
     <section id="our-story" className="w-full bg-white py-20 px-6 md:px-20">
@@ -54,177 +80,183 @@ export default function OurStory() {
       {/* Description – His Story */}
       <div className="w-full flex flex-col text-center px-4 md:px-20 mt-20">
         <h3 className="font-bold text-[22px] md:text-[25px] mx-auto text-gray-700 mb-4">
-          How We Met - Fredrick 
+          How We Met - Fredrick
         </h3>
 
         <div>
           <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">Hey,</p>
 
-        <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
-          Okay, Okay... Uhhhmmmm... How I started talking to her, right?
-        </p>
+          <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
+            Okay, Okay... Uhhhmmmm... How I started talking to her, right?
+          </p>
 
-        <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
-          She kept appearing on my Facebook feeds apparently. I can't tell exactly if we had been friends or
-          not but I sent her a message on Facebook,
-          I actually sent 2 Ladies a DM on Facebook that day.
-        </p>
+          <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
+            She kept appearing on my Facebook feeds apparently. I can't tell exactly if we had been friends or
+            not but I sent her a message on Facebook,
+            I actually sent 2 Ladies a DM on Facebook that day.
+          </p>
 
-        <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
-          Well, She replied. It was a hazy period for me, I wanted to talk to a stranger.
-        </p>
+          <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
+            Well, She replied. It was a hazy period for me, I wanted to talk to a stranger.
+          </p>
 
-        <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
-          She replied and after a little bit, I told her FB was not my terrain, let's head to WhatsApp 🤣.
-          She sent me her number. I was surprised Uno... Maybe she was the crafty one after all!
-        </p>
-        
-        <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
-          After a period of Chats, Uno how it is na 🌚, We agreed to meet at the KH...
-          She was coming from work on Sunday...
-          She told me "I'm coming to see my sister, I think you have the same meeting time" 😂
-        </p>
+          <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
+            She replied and after a little bit, I told her FB was not my terrain, let's head to WhatsApp 🤣.
+            She sent me her number. I was surprised Uno... Maybe she was the crafty one after all!
+          </p>
 
-        <p className="italic text-[16px] md:text-[18px] text-gray-700 mb-2">
-          I told you she is crafty, I'm not taking any credit
-        </p>
+          <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
+            After a period of Chats, Uno how it is na 🌚, We agreed to meet at the KH...
+            She was coming from work on Sunday...
+            She told me "I'm coming to see my sister, I think you have the same meeting time" 😂
+          </p>
 
-        <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
-          I told her I would love to see her when she comes around though,
-          Who would miss such opportunity?
-        </p>
+          <p className="italic text-[16px] md:text-[18px] text-gray-700 mb-2">
+            I told you she is crafty, I'm not taking any credit
+          </p>
 
-        <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
-          Let's skip to the actual meeting
-        </p>
+          <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
+            I told her I would love to see her when she comes around though,
+            Who would miss such opportunity?
+          </p>
 
-        <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
-          It was under heavy rain at the KH. It was something that seems out of a KDrama 😂... I was struck...
-        </p>
+          <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
+            Let's skip to the actual meeting
+          </p>
 
-        <p className="text-[16px] md:text-[18px] text-gray-700 mb-5">
-          She would tell you the rest. 😌 Bambi has a better Memory.
-        </p>
+          <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
+            It was under heavy rain at the KH. It was something that seems out of a KDrama 😂... I was struck...
+          </p>
+
+          <p className="text-[16px] md:text-[18px] text-gray-700 mb-5">
+            She would tell you the rest. 😌 Bambi has a better Memory.
+          </p>
         </div>
+      </div>
+      <div className="flex flex-col items-center mt-16 w-full px-0 sm:px-4">
+        <div className="w-full sm:max-w-[75%] text-left sm:text-center px-4">
+          <h3 className="font-bold text-[22px] md:text-[25px] mx-auto text-gray-700 mb-4">
+            QUESTIONS
+          </h3>
 
-         <div className="flex flex-col items-center mt-16 lg:mt-5 px-4">
-              <div className="w-full max-w-[90%] sm:max-w-[75%] text-left sm:text-center ">
-                <h3 className="font-bold text-[22px] md:text-[25px] mx-auto text-gray-700 mb-4">
-                  QUESTIONS
-                </h3>
-        
-                <div className="mt-8 p-4 sm:p-5 tracking-wide w-full">
-                  {questions.map((question, index) => (
-                    <div key={index} className="mb-2">
-                      <div
-                        className={`cursor-pointer px-4 py-3 rounded-xl transition-all duration-300 ${
-                          openIndex === index ? "bg-[#f5f6ff] text-[#0c005b] font-bold" : "bg-white text-[#0c005b]"
-                        }`}
-                        onClick={() => toggleAnswer(index)}
+          <div className="mt-8 p-0 sm:p-5 tracking-wide w-full space-y-3">
+            {questions.map((question, index) => (
+              <div key={index} className="w-full">
+                <div
+                  className={`cursor-pointer px-4 py-3 rounded-xl transition-all duration-300 w-full ${openIndex === index
+                    ? "bg-[#f5f6ff] text-[#0c005b] font-bold"
+                    : "bg-white text-[#0c005b]"
+                    }`}
+                  onClick={() => toggleAnswer(index)}
+                >
+                  <div className="flex justify-between items-center w-full">
+                    <span className="text-sm sm:text-lg font-bold">{question.question}</span>
+                    <button className="text-xl sm:text-2xl font-bold cursor-pointer">
+                      {openIndex === index ? "−" : "+"}
+                    </button>
+                  </div>
+
+                  <AnimatePresence>
+                    {openIndex === index && (
+                      <motion.div
+                        initial={{ opacity: 0, scaleY: 0 }}
+                        animate={{ opacity: 1, scaleY: 1 }}
+                        exit={{ opacity: 0, scaleY: 0 }}
+                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                        className="overflow-hidden bg-[#f5f6ff] text-[#0c005b] mt-2 rounded-b-xl px-2 py-2 w-full"
                       >
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm sm:text-lg font-bold">{question.question}</span>
-                          <button className="text-xl sm:text-2xl font-bold cursor-pointer">
-                            {openIndex === index ? "−" : "+"}
-                          </button>
-                        </div>
-        
-                        <AnimatePresence>
-                          {openIndex === index && (
-                            <motion.div
-                              initial={{ opacity: 0, scaleY: 0 }}
-                              animate={{ opacity: 1, scaleY: 1 }}
-                              exit={{ opacity: 0, scaleY: 0 }}
-                              transition={{ duration: 0.4, ease: "easeInOut" }}
-                              className="overflow-hidden bg-[#f5f6ff] text-[#0c005b] mt-2 rounded-b-xl px-2 py-2"
-                            >
-                              <p className="text-sm sm:text-base leading-relaxed font-light text-black text-left">{question.answer}</p>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    </div>
-                  ))}
+                        <p className="text-sm sm:text-base leading-relaxed font-light text-black text-left">
+                          {question.answer}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </div>
-            </div>
+            ))}
+          </div>
+        </div>
       </div>
+
 
       {/* Description – Her Story */}
       <div className="w-full flex flex-col text-center px-4 md:px-20 mt-20">
         <h3 className="font-bold text-[22px] md:text-[25px] mx-auto text-gray-700 mb-4">
-          How We Met - Karen 
+          How We Met - Karen
         </h3>
 
         <div className="mb-5">
           <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
-          Well, we met on Facebook (thank you, Mark Zuckerberg). Around the time he texted me,
-          I wasn’t really active on Facebook.
-        </p>
+            Well, we met on Facebook (thank you, Mark Zuckerberg). Around the time he texted me,
+            I wasn’t really active on Facebook.
+          </p>
 
-        <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
-          So yes, he sent me a DM on Facebook. When I saw it, my first thought was,
-          “Ah ah… these men again.”
-        </p>
+          <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
+            So yes, he sent me a DM on Facebook. When I saw it, my first thought was,
+            “Ah ah… these men again.”
+          </p>
 
-        <p className="text-[16px] md:text-[18px] text-gray-700 mb-4">
-          But there was something about his opening line that stuck with me.
-          He said: “I’m here because I’m curious.”
-        </p>
+          <p className="text-[16px] md:text-[18px] text-gray-700 mb-4">
+            But there was something about his opening line that stuck with me.
+            He said: “I’m here because I’m curious.”
+          </p>
 
-        <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
-          Fast-forward to the day we met for the first time.
-          It was a full K-drama scene 🤣.
-        </p>
+          <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
+            Fast-forward to the day we met for the first time.
+            It was a full K-drama scene 🤣.
+          </p>
 
-        <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
-          Fast forward, and here I am: engaged to the kindest, caring, most brilliant man I’ve ever known.
-        </p>
+          <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
+            Fast forward, and here I am: engaged to the kindest, caring, most brilliant man I’ve ever known.
+          </p>
         </div>
-
-        <div className="flex flex-col items-center mt-16 lg:mt-5 px-4">
-              <div className="w-full max-w-[90%] sm:max-w-[75%] text-left sm:text-center ">
-                <h3 className="font-bold text-[22px] md:text-[25px] mx-auto text-gray-700 mb-4">
-                  QUESTIONS
-                </h3>
-        
-                <div className="mt-8 p-4 sm:p-5 tracking-wide w-full">
-                  {questions.map((question, index) => (
-                    <div key={index} className="mb-2">
-                      <div
-                        className={`cursor-pointer px-4 py-3 rounded-xl transition-all duration-300 ${
-                          openIndex === index ? "bg-[#f5f6ff] text-[#0c005b] font-bold" : "bg-white text-[#0c005b]"
-                        }`}
-                        onClick={() => toggleAnswer(index)}
-                      >
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm sm:text-lg font-bold">{question.question}</span>
-                          <button className="text-xl sm:text-2xl font-bold cursor-pointer">
-                            {openIndex === index ? "−" : "+"}
-                          </button>
-                        </div>
-        
-                        <AnimatePresence>
-                          {openIndex === index && (
-                            <motion.div
-                              initial={{ opacity: 0, scaleY: 0 }}
-                              animate={{ opacity: 1, scaleY: 1 }}
-                              exit={{ opacity: 0, scaleY: 0 }}
-                              transition={{ duration: 0.4, ease: "easeInOut" }}
-                              className="overflow-hidden bg-[#f5f6ff] text-[#0c005b] mt-2 rounded-b-xl px-2 py-2"
-                            >
-                              <p className="text-sm sm:text-base leading-relaxed font-light text-black text-left">{question.answer}</p>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
       </div>
 
+      <div className="flex flex-col items-center mt-16 w-full px-0 sm:px-4">
+        <div className="w-full sm:max-w-[75%] text-left sm:text-center px-4">
+          <h3 className="font-bold text-[22px] md:text-[25px] mx-auto text-gray-700 mb-4">
+            QUESTIONS
+          </h3>
+
+          <div className="mt-8 p-0 sm:p-5 tracking-wide w-full space-y-3">
+            {questionsKaren.map((questionKaren, index) => (
+              <div key={index} className="w-full">
+                <div
+                  className={`cursor-pointer px-4 py-3 rounded-xl transition-all duration-300 w-full ${openIndexKaren === index
+                      ? "bg-[#f5f6ff] text-[#0c005b] font-bold"
+                      : "bg-white text-[#0c005b]"
+                    }`}
+                  onClick={() => toggleAnswerKaren(index)}
+                >
+                  <div className="flex justify-between items-center w-full">
+                    <span className="text-sm sm:text-lg font-bold">{questionKaren.questionKaren}</span>
+                    <button className="text-xl sm:text-2xl font-bold cursor-pointer">
+                      {openIndexKaren === index ? "−" : "+"}
+                    </button>
+                  </div>
+
+                  <AnimatePresence>
+                    {openIndexKaren === index && (
+                      <motion.div
+                        initial={{ opacity: 0, scaleY: 0 }}
+                        animate={{ opacity: 1, scaleY: 1 }}
+                        exit={{ opacity: 0, scaleY: 0 }}
+                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                        className="overflow-hidden bg-[#f5f6ff] text-[#0c005b] mt-2 rounded-b-xl px-2 py-2 w-full"
+                      >
+                        <p className="text-sm sm:text-base leading-relaxed font-light text-black text-left">
+                          {/* Replace with Karen's answers */}
+                          {questionKaren.answerKaren}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
       {/* Image + Quote */}
       <div className="flex flex-col justify-center items-center w-full mt-16 px-4">
         <div className="mt-16 text-gray-600 italic max-w-xl mx-auto text-center text-[16px] md:text-[18px]">
