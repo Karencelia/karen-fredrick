@@ -28,28 +28,25 @@ export default function WeddingWishes() {
   const [status, setStatus] = useState(null); // success | error | limit
 
   /* ===============================
-     INIT SDKs
+     LOAD WISHES FROM BACKEND
   =============================== */
   useEffect(() => {
-    if (window.elementSdk) {
-      window.elementSdk.init({
-        defaultConfig,
-        onConfigChange: (cfg) =>
-          setConfig({ ...defaultConfig, ...cfg }),
-      });
-    }
+    const fetchWishes = async () => {
+      try {
+        const res = await fetch("/api/wishes");
+        const data = await res.json();
 
-    if (window.dataSdk) {
-      window.dataSdk.init({
-        onDataChanged: (data) => {
-          const sorted = [...data].sort(
-            (a, b) =>
-              new Date(b.created_at) - new Date(a.created_at)
-          );
-          setWishes(sorted);
-        },
-      });
-    }
+        if (res.ok) {
+          setWishes(data);
+        } else {
+          console.error(data.error);
+        }
+      } catch (err) {
+        console.error("Failed to fetch wishes:", err);
+      }
+    };
+
+    fetchWishes();
   }, []);
 
   /* ===============================
@@ -65,24 +62,36 @@ export default function WeddingWishes() {
 
     setLoading(true);
 
-    const newWish = {
-      name: form.name.trim(),
-      message: form.message.trim(),
-      created_at: new Date().toISOString(),
-    };
+    try {
+      const res = await fetch("/api/wishes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          message: form.message.trim(),
+        }),
+      });
 
-    const result = await window.dataSdk.create(newWish);
+      const data = await res.json();
+      setLoading(false);
 
-    setLoading(false);
-
-    if (result.isOk) {
-      setForm({ name: "", message: "" });
-      setStatus("success");
-      setTimeout(() => setStatus(null), 3000);
-    } else {
+      if (res.ok) {
+        setWishes((prev) => [data, ...prev]);
+        setForm({ name: "", message: "" });
+        setStatus("success");
+      } else {
+        console.error(data.error);
+        setStatus("error");
+      }
+    } catch (err) {
+      console.error("Submit failed:", err);
       setStatus("error");
-      setTimeout(() => setStatus(null), 3000);
+      setLoading(false);
     }
+
+    setTimeout(() => setStatus(null), 3000);
   };
 
   return (
@@ -93,9 +102,7 @@ export default function WeddingWishes() {
     >
       <div className="max-w-4xl mx-auto">
 
-        {/* =========================
-             HEADER
-        ========================== */}
+        {/* HEADER */}
         <div className="text-center mb-12">
           <h1
             className="text-4xl md:text-5xl font-serif mb-3"
@@ -129,9 +136,7 @@ export default function WeddingWishes() {
           </div>
         </div>
 
-        {/* =========================
-             FORM
-        ========================== */}
+        {/* FORM */}
         <div className="bg-white p-8 rounded-2xl shadow-lg mb-16">
           <form onSubmit={handleSubmit} className="space-y-6">
             <input
@@ -187,9 +192,7 @@ export default function WeddingWishes() {
           )}
         </div>
 
-        {/* =========================
-             WISHES LIST
-        ========================== */}
+        {/* WISHES LIST */}
         <div className="grid gap-6 md:grid-cols-2">
           {wishes.length === 0 && (
             <p className="text-center col-span-2 text-gray-500">
@@ -199,7 +202,7 @@ export default function WeddingWishes() {
 
           {wishes.map((wish) => (
             <div
-              key={wish.__backendId}
+              key={wish.id}
               className="p-6 rounded-xl shadow-md bg-white"
               style={{
                 borderLeft: `4px solid ${config.accent_color}`,
@@ -213,9 +216,7 @@ export default function WeddingWishes() {
               </h4>
 
               <p className="text-xs opacity-60 mb-3">
-                {new Date(
-                  wish.created_at
-                ).toLocaleDateString()}
+                {new Date(wish.created_at).toLocaleDateString()}
               </p>
 
               <p style={{ color: config.text_color }}>
