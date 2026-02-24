@@ -3,61 +3,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function OurStory() {
-  const [openIndex, setOpenIndex] = useState(null);
-const [openIndexKaren, setOpenIndexKaren] = useState(null);
-
-
-  const questions = [
-    {
-      question: "What's your partner's favourite phrase or word to say??",
-      answer: "Wo... I'm tired o 😂",
-    },
-    {
-      question: "Using an Expression, how else would you tell your partner 'I Love you!",
-      answer: "You are True North to me - Life does have more meaning because of you",
-    },
-    {
-      question: "What's one word that comes to your mind when you think of your Baby? ",
-      answer: "Bubbles",
-    },
-    {
-      question: "Your favourite memory of him/her?",
-      answer: "First Day I saw her - In the Rain 🌧️",
-    },
-    {
-      question: "What habit do you appreciate the most about him/her?",
-      answer: "Once she makes up her mind about something, she sticks to it.",
-    }
-  ];
-
-  const questionsKaren = [
-    {
-      questionKaren: "What's your partner's favourite phrase or word to say??",
-      answerKaren: "Karen's Response",
-    },
-    {
-      questionKaren: "Using an Expression, how else would you tell your partner 'I Love you!",
-      answerKaren: "You are True North to me - Life does have more meaning because of you",
-    },
-    {
-      questionKaren: "What's one word that comes to your mind when you think of your Baby? ",
-      answerKaren: "Bubbles",
-    },
-    {
-      questionKaren: "Your favourite memory of him/her?",
-      answerKaren: "First Day I saw her - In the Rain 🌧️",
-    }
-  ];
-
-  const toggleAnswer = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
-  const toggleAnswerKaren = (index) => {
-  setOpenIndexKaren(openIndexKaren === index ? null : index);
-};
-
-
   return (
     <section id="our-story" className="w-full bg-white py-20 px-6 md:px-20">
       {/* Title */}
@@ -137,51 +82,6 @@ const [openIndexKaren, setOpenIndexKaren] = useState(null);
           </p>
         </div>
       </div>
-      <div className="flex flex-col items-center mt-16 w-full px-0 sm:px-4">
-        <div className="w-full sm:max-w-[75%] text-left sm:text-center px-4">
-          <h3 className="font-bold text-[22px] md:text-[25px] mx-auto text-gray-700 mb-4">
-            QUESTIONS
-          </h3>
-
-          <div className="mt-8 p-0 sm:p-5 tracking-wide w-full space-y-3">
-            {questions.map((question, index) => (
-              <div key={index} className="w-full">
-                <div
-                  className={`cursor-pointer px-4 py-3 rounded-xl transition-all duration-300 w-full ${openIndex === index
-                    ? "bg-[#f5f6ff] text-[#0c005b] font-bold"
-                    : "bg-white text-[#0c005b]"
-                    }`}
-                  onClick={() => toggleAnswer(index)}
-                >
-                  <div className="flex justify-between items-center w-full">
-                    <span className="text-sm sm:text-lg font-bold">{question.question}</span>
-                    <button className="text-xl sm:text-2xl font-bold cursor-pointer">
-                      {openIndex === index ? "−" : "+"}
-                    </button>
-                  </div>
-
-                  <AnimatePresence>
-                    {openIndex === index && (
-                      <motion.div
-                        initial={{ opacity: 0, scaleY: 0 }}
-                        animate={{ opacity: 1, scaleY: 1 }}
-                        exit={{ opacity: 0, scaleY: 0 }}
-                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                        className="overflow-hidden bg-[#f5f6ff] text-[#0c005b] mt-2 rounded-b-xl px-2 py-2 w-full"
-                      >
-                        <p className="text-sm sm:text-base leading-relaxed font-light text-black text-left">
-                          {question.answer}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
 
       {/* Description – Her Story */}
       <div className="w-full flex flex-col text-center px-4 md:px-20 mt-20">
@@ -216,51 +116,6 @@ const [openIndexKaren, setOpenIndexKaren] = useState(null);
         </div>
       </div>
 
-      <div className="flex flex-col items-center mt-16 w-full px-0 sm:px-4">
-        <div className="w-full sm:max-w-[75%] text-left sm:text-center px-4">
-          <h3 className="font-bold text-[22px] md:text-[25px] mx-auto text-gray-700 mb-4">
-            QUESTIONS
-          </h3>
-
-          <div className="mt-8 p-0 sm:p-5 tracking-wide w-full space-y-3">
-            {questionsKaren.map((questionKaren, index) => (
-              <div key={index} className="w-full">
-                <div
-                  className={`cursor-pointer px-4 py-3 rounded-xl transition-all duration-300 w-full ${openIndexKaren === index
-                      ? "bg-[#f5f6ff] text-[#0c005b] font-bold"
-                      : "bg-white text-[#0c005b]"
-                    }`}
-                  onClick={() => toggleAnswerKaren(index)}
-                >
-                  <div className="flex justify-between items-center w-full">
-                    <span className="text-sm sm:text-lg font-bold">{questionKaren.questionKaren}</span>
-                    <button className="text-xl sm:text-2xl font-bold cursor-pointer">
-                      {openIndexKaren === index ? "−" : "+"}
-                    </button>
-                  </div>
-
-                  <AnimatePresence>
-                    {openIndexKaren === index && (
-                      <motion.div
-                        initial={{ opacity: 0, scaleY: 0 }}
-                        animate={{ opacity: 1, scaleY: 1 }}
-                        exit={{ opacity: 0, scaleY: 0 }}
-                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                        className="overflow-hidden bg-[#f5f6ff] text-[#0c005b] mt-2 rounded-b-xl px-2 py-2 w-full"
-                      >
-                        <p className="text-sm sm:text-base leading-relaxed font-light text-black text-left">
-                          {/* Replace with Karen's answers */}
-                          {questionKaren.answerKaren}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
       {/* Image + Quote */}
       <div className="flex flex-col justify-center items-center w-full mt-16 px-4">
         <div className="mt-16 text-gray-600 italic max-w-xl mx-auto text-center text-[16px] md:text-[18px]">
@@ -269,15 +124,6 @@ const [openIndexKaren, setOpenIndexKaren] = useState(null);
             Song of Solomon 3:4 (NWT)
           </p>
         </div>
-      </div>
-
-      {/* Initials */}
-      <div className="flex justify-center items-center mt-5 px-4">
-        <img
-          src="initials.png"
-          alt="Wedding Hero"
-          className="object-cover w-full max-w-[800px]"
-        />
       </div>
     </section>
   );

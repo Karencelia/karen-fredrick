@@ -2,7 +2,7 @@
 
 export default function Schedule() {
   return (
-    <section id="schedule" className="w-full bg-white py-24 px-6 md:px-20 text-center">
+    <section id="schedule" className="w-full bg-white py-20 px-6 md:px-20 text-center">
       {/* Main Title */}
       <h2 className="text-3xl md:text-5xl tracking-widest font-light mb-12 md:mb-16">
         THE SCHEDULE
@@ -52,6 +52,15 @@ export default function Schedule() {
             <i>All Guests</i>
           </p>
         </div>
+      </div>
+
+      {/* Initials */}
+      <div className="flex justify-center items-center mt-5 px-4 py-2">
+        <img
+          src="initials.png"
+          alt="Wedding Hero"
+          className="object-cover w-full max-w-[800px]"
+        />
       </div>
     </section>
   );

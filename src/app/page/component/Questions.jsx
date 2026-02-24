@@ -6,30 +6,41 @@ export default function Questions() {
   const [openIndex, setOpenIndex] = useState(null);
 
   const faqs = [
-    {
-      question: "What's your partner's favourite phrase or word to say?",
-      answer: "Ome, I love you. You are my Ikigai!",
+     {
+      question: "What's your partner's favourite phrase or word to say??",
+      answers: [
+      { name: "Fredrick", text: "Wo... I'm tired o 😂" },
+      { name: "Karen", text: "Ome" }
+    ],
     },
     {
-      question: "Using an Expression, how else would you tell your partner 'I Love you!'?",
-      answer: "Hugging tightly",
+      question: "Using an Expression, how else would you tell your partner 'I Love you!",
+      answers: [
+        { name: "Fredrick", text: "You are True North to me - Life does have more meaning because of you" },
+        { name: "Karen", text: "My heart found its rhythm in you." },
+      ],
     },
     {
       question: "What's one word that comes to your mind when you think of your Baby? ",
-      answer: "My Ikigai",
+      answers: [
+        { name: "Fredrick", text: "Bubbles" },
+        { name: "Karen", text: "Peace" },
+      ],
     },
     {
       question: "Your favourite memory of him/her?",
-      answer: "Our second date",
+      answers: [
+        { name: "Fredrick", text: "First Day I saw her - In the Rain 🌧️" },
+        { name: "Karen", text: "" },
+      ],
     },
     {
-      question: "Can I bring a plus-one?",
-      answer: "Your invitation will specify if a plus-one is included.",
-    },
-    {
-      question: "Are kids allowed?",
-      answer: "We love your little ones, but we're keeping this an adults-only event so you and everyone can relax and enjoy the event.",
-    },
+      question: "What habit do you appreciate the most about him/her?",
+      answers: [
+        { name: "Fredrick", text: "Once she makes up her mind about something, she sticks to it." },
+        { name: "Karen", text: "His consistency — I never have to question where I stand with him." },
+      ],
+    }
   ];
 
   const toggleAnswer = (index) => {
@@ -41,8 +52,8 @@ export default function Questions() {
       <div className="flex flex-col items-center mt-16 lg:mt-5">
         {/* Removed px-4 from parent and adjusted max-width classes */}
         <div className="w-full px-4 sm:px-0 sm:max-w-[90%] md:max-w-[75%] text-left sm:text-center">
-          <h2 className="text-[24px] sm:text-[32px] md:text-[50px] font-black text-[#0c005b] px-4 sm:px-0">
-            QUESTIONS
+          <h2 className="text-4xl md:text-5xl text-[#0c005b] px-4 sm:px-0">
+            Couple's Q&A
           </h2>
 
           {/* Full width on mobile, constrained on larger screens */}
@@ -71,7 +82,18 @@ export default function Questions() {
                         transition={{ duration: 0.4, ease: "easeInOut" }}
                         className="overflow-hidden bg-[#f5f6ff] text-[#0c005b] mt-2 rounded-b-xl px-2 py-2"
                       >
-                        <p className="text-sm sm:text-base leading-relaxed font-light text-black text-left">{faq.answer}</p>
+                        <p className="text-sm sm:text-base leading-relaxed font-light text-black text-left">
+                          {faq.answers.map((ans, i) => (
+  <div key={i} className="mb-2">
+    <p className="font-semibold text-[#0c005b]">
+      {ans.name}'s Response:
+    </p>
+    <p className="text-sm sm:text-base leading-relaxed font-light text-black">
+      {ans.text}
+    </p>
+  </div>
+))}
+                        </p>
                       </motion.div>
                     )}
                   </AnimatePresence>
