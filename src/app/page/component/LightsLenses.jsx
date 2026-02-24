@@ -92,7 +92,7 @@ export default function LightsAndLenses() {
   =============================== */
   return (
     <section id="lights-lenses">
-      <div className="py-20 px-6 md:px-16 bg-[#f8f8f8]">
+      <div className="py-16 px-6 md:px-16 bg-[#f8f8f8]">
         <div className="max-w-6xl mx-auto">
 
           {/* ================= SHARE SECTION ================= */}
@@ -186,23 +186,3 @@ export default function LightsAndLenses() {
   );
 }
 
-<div
-  key={wish.__backendId || wish.id || wish.created_at}
-  className="relative rounded-xl overflow-hidden group"
->
-  {/* GIF Background */}
-  <img src={getGif(wish)} className="w-full h-64 md:h-80 object-cover" alt="wish gif" />
-
-  {/* Overlay */}
-  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/55 transition" />
-
-  {/* TEXT AT BOTTOM */}
-  <div className="absolute bottom-4 left-0 right-0 px-4 text-center text-white">
-    <h4 className="uppercase text-sm tracking-wide font-semibold mb-1">
-      {wish.name}
-    </h4>
-    <p className="text-sm leading-relaxed line-clamp-3">
-      {wish.message}
-    </p>
-  </div>
-</div>
