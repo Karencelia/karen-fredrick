@@ -2,228 +2,252 @@
 
 import { useEffect, useState } from "react";
 
-/* ===============================
-   DEFAULT CONFIG
-================================ */
-const defaultConfig = {
-  couple_names: "Karen & Fredrick",
-  section_title: "Send Your Well Wishes",
-  hashtag_one: "#K&FInfinitum",
-  hashtag_two: "#Karen&Fredrick",
-  hashtag_three: "#KF'26",
-  background_color: "#ffffff",
-  text_color: "#1a472a",
-  accent_color: "#2d6a3e",
-  font_size: 16,
-};
-
 export default function WeddingWishes() {
-  /* ===============================
-     STATE
-  =============================== */
-  const [config, setConfig] = useState(defaultConfig);
   const [wishes, setWishes] = useState([]);
-  const [form, setForm] = useState({ name: "", message: "" });
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [drawerMode, setDrawerMode] = useState("form"); // form | view
+  const [form, setForm] = useState({
+    name: "",
+    message: "",
+    gif_url: "",
+  });
   const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState(null); // success | error | limit
+  const [showGifPicker, setShowGifPicker] = useState(false);
+const getGif = (wish) => wish.gif_url || weddingGifs[Math.floor(Math.random() * weddingGifs.length)];
+  const weddingGifs = [
+    "https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif",
+    "https://media.giphy.com/media/26BRuo6sLetdllPAQ/giphy.gif",
+    "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif",
+    "https://media.giphy.com/media/3oz8xKaR836UJOYeOc/giphy.gif",
+    "https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif",
+    "https://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif",
+  ];
 
-  /* ===============================
-     LOAD WISHES FROM BACKEND
-  =============================== */
+  /* ================= FETCH ================= */
   useEffect(() => {
     const fetchWishes = async () => {
-      try {
-        const res = await fetch("/api/wishes");
-        const data = await res.json();
-
-        if (res.ok) {
-          setWishes(data);
-        } else {
-          console.error(data.error);
-        }
-      } catch (err) {
-        console.error("Failed to fetch wishes:", err);
-      }
+      const res = await fetch("/api/wishes");
+      const data = await res.json();
+      if (res.ok) setWishes(data);
     };
-
     fetchWishes();
   }, []);
 
-  /* ===============================
-     HANDLE SUBMIT
-  =============================== */
+  /* ================= SUBMIT ================= */
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (wishes.length >= 999) {
-      setStatus("limit");
-      return;
-    }
-
     setLoading(true);
 
-    try {
-      const res = await fetch("/api/wishes", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: form.name.trim(),
-          message: form.message.trim(),
-        }),
-      });
+    const newWish = {
+      name: form.name.trim(),
+      message: form.message.trim(),
+      gif_url: form.gif_url,
+      created_at: new Date().toISOString(),
+    };
 
-      const data = await res.json();
-      setLoading(false);
+    const res = await fetch("/api/wishes", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newWish),
+    });
 
-      if (res.ok) {
-        setWishes((prev) => [data, ...prev]);
-        setForm({ name: "", message: "" });
-        setStatus("success");
-      } else {
-        console.error(data.error);
-        setStatus("error");
-      }
-    } catch (err) {
-      console.error("Submit failed:", err);
-      setStatus("error");
-      setLoading(false);
+    const data = await res.json();
+    setLoading(false);
+
+    if (res.ok) {
+      setWishes([data, ...wishes]);
+      setForm({ name: "", message: "", gif_url: "" });
+      setDrawerOpen(false);
     }
-
-    setTimeout(() => setStatus(null), 3000);
   };
 
   return (
-    <section
-      id="well-wishes"
-      className="min-h-screen px-6 py-16"
-      style={{ background: config.background_color }}
-    >
+    <section id="well-wishes" className="px-6 py-20 bg-[#f8f8f8]">
       <div className="max-w-4xl mx-auto">
 
         {/* HEADER */}
         <div className="text-center mb-12">
-          <h1
-            className="text-4xl md:text-5xl font-serif mb-3"
-            style={{
-              color: config.text_color,
-              fontSize: config.font_size * 2.5,
-            }}
-          >
-            {config.couple_names}
-          </h1>
-
-          <h2
-            className="uppercase tracking-widest text-lg"
-            style={{
-              color: config.text_color,
-              fontSize: config.font_size * 1.1,
-            }}
-          >
-            {config.section_title}
-          </h2>
-
-          <div
-            className="flex justify-center gap-3 mt-4 text-sm"
-            style={{ color: config.accent_color }}
-          >
-            <span>{config.hashtag_one}</span>
-            <span>•</span>
-            <span>{config.hashtag_two}</span>
-            <span>•</span>
-            <span>{config.hashtag_three}</span>
-          </div>
+          <h2 className="text-4xl md:text-5xl font-serif">Well Wishes</h2>
         </div>
 
-        {/* FORM */}
-        <div className="bg-white p-8 rounded-2xl shadow-lg mb-16">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <input
-              type="text"
-              required
-              placeholder="Your Name"
-              value={form.name}
-              onChange={(e) =>
-                setForm({ ...form, name: e.target.value })
-              }
-              className="w-full p-3 border rounded-lg"
-            />
-
-            <textarea
-              required
-              rows="4"
-              placeholder="Share your wishes..."
-              value={form.message}
-              onChange={(e) =>
-                setForm({ ...form, message: e.target.value })
-              }
-              className="w-full p-3 border rounded-lg resize-none"
-            />
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-4 rounded-lg text-white font-medium"
-              style={{
-                background: `linear-gradient(135deg, ${config.text_color}, ${config.accent_color})`,
-              }}
-            >
-              {loading ? "Sending..." : "Send Well Wishes"}
-            </button>
-          </form>
-
-          {status === "success" && (
-            <p className="mt-4 text-green-600 text-center">
-              ✨ Your well wishes have been sent!
-            </p>
-          )}
-
-          {status === "error" && (
-            <p className="mt-4 text-red-600 text-center">
-              Something went wrong. Please try again.
-            </p>
-          )}
-
-          {status === "limit" && (
-            <p className="mt-4 text-orange-600 text-center">
-              Guestbook is full 💕
-            </p>
-          )}
-        </div>
-
-        {/* WISHES LIST */}
-        <div className="grid gap-6 md:grid-cols-2">
-          {wishes.length === 0 && (
-            <p className="text-center col-span-2 text-gray-500">
-              Be the first to send your well wishes 💕
-            </p>
-          )}
-
-          {wishes.map((wish) => (
+        {/* GRID */}
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {wishes.slice(0, 6).map((wish) => (
             <div
-              key={wish.id}
-              className="p-6 rounded-xl shadow-md bg-white"
-              style={{
-                borderLeft: `4px solid ${config.accent_color}`,
-              }}
+              key={wish.__backendId || wish.id || wish.created_at}
+              className="relative rounded-xl overflow-hidden group"
             >
-              <h4
-                className="text-lg font-semibold"
-                style={{ color: config.text_color }}
-              >
-                {wish.name}
-              </h4>
+              {/* GIF Background */}
+              <img src={getGif(wish)} className="w-full h-64 md:h-80 object-cover" alt="wish gif" />
 
-              <p className="text-xs opacity-60 mb-3">
-                {new Date(wish.created_at).toLocaleDateString()}
-              </p>
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/55 transition" />
 
-              <p style={{ color: config.text_color }}>
-                {wish.message}
-              </p>
+              {/* TEXT AT BOTTOM */}
+              <div className="absolute bottom-4 left-0 right-0 px-4 text-center text-white">
+                <h4 className="uppercase text-sm tracking-wide font-semibold mb-1">
+                  {wish.name}
+                </h4>
+                <p className="text-sm leading-relaxed line-clamp-3">
+                  {wish.message}
+                </p>
+              </div>
             </div>
           ))}
+        </div>
+
+        {/* BUTTONS */}
+        <div className="flex justify-center gap-6 mt-12">
+          <button
+            onClick={() => {
+              setDrawerMode("view");
+              setDrawerOpen(true);
+            }}
+            className="px-8 py-3 border rounded-full cursor-pointer"
+          >
+            VIEW ALL ({wishes.length})
+          </button>
+
+          <button
+            onClick={() => {
+              setDrawerMode("form");
+              setDrawerOpen(true);
+            }}
+            className="px-8 py-3 rounded-full bg-[#05472A] hover:opacity-90 text-white cursor-pointer"
+          >
+            POST A WISH
+          </button>
+        </div>
+      </div>
+
+      {/* ================= DRAWER ================= */}
+      <div
+        className={`fixed inset-0 z-50 ${drawerOpen ? "visible" : "invisible"}`}
+      >
+        {/* Overlay */}
+        <div
+          onClick={() => setDrawerOpen(false)}
+          className={`absolute inset-0 bg-black/40 transition-opacity ${drawerOpen ? "opacity-100" : "opacity-0"}`}
+        />
+
+        {/* Drawer Panel */}
+        <div
+          className={`absolute right-0 top-0 h-full w-full md:w-[500px] bg-white p-10 overflow-y-auto transform transition-transform duration-300 ${drawerOpen ? "translate-x-0" : "translate-x-full"}`}
+        >
+          {drawerMode === "form" ? (
+            <>
+              <h3 className="text-3xl font-serif mb-8 text-center">MESSAGE</h3>
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <input
+                  required
+                  type="text"
+                  placeholder="Your Name"
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  className="w-full border-b p-3 outline-none"
+                />
+
+                <textarea
+                  required
+                  rows={5}
+                  maxLength={140}
+                  placeholder="Type message here"
+                  value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  className="w-full border p-3 resize-none"
+                />
+
+                {/* GIF PICKER */}
+                <div>
+                  {!form.gif_url ? (
+                    <button
+                      type="button"
+                      onClick={() => setShowGifPicker(!showGifPicker)}
+                      className="flex items-center gap-2 text-sm text-gray-600"
+                    >
+                      😊 Add GIF
+                    </button>
+                  ) : (
+                    <div className="relative">
+                      <img
+                        src={form.gif_url}
+                        className="h-32 w-full object-cover rounded-lg mb-2"
+                        alt="selected gif"
+                      />
+                      <div className="flex justify-end gap-2">
+                        <button
+                          type="button"
+                          onClick={() => setForm({ ...form, gif_url: "" })}
+                          className="px-3 py-1 text-sm bg-red-500 text-white rounded"
+                        >
+                          Remove
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setShowGifPicker(true)}
+                          className="px-3 py-1 text-sm bg-gray-800 text-white rounded"
+                        >
+                          Change
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {showGifPicker && (
+                    <div className="grid grid-cols-3 gap-3 mt-4 max-h-52 overflow-y-auto">
+                      {weddingGifs.map((gif) => (
+                        <img
+                          key={gif}
+                          src={gif}
+                          onClick={() => {
+                            setForm({ ...form, gif_url: gif });
+                            setShowGifPicker(false);
+                          }}
+                          className={`h-20 w-full object-cover rounded-lg cursor-pointer border-2 ${form.gif_url === gif ? "border-black" : "border-transparent"}`}
+                          alt="gif option"
+                        />
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <button
+                  disabled={loading}
+                  type="submit"
+                  className="w-full py-4 bg-gray-800 text-white rounded-full"
+                >
+                  {loading ? "Sending..." : "SEND"}
+                </button>
+              </form>
+            </>
+          ) : (
+            <>
+              <h3 className="text-3xl font-serif mb-8 text-center">ALL WISHES</h3>
+
+              <div className="space-y-6">
+                {wishes.map((wish) => (
+                  <div
+                    key={wish.id || wish.created_at}
+                    className="border rounded-xl overflow-hidden"
+                  >
+                    {wish.gif_url && (
+                      <img
+                        src={wish.gif_url}
+                        className="h-40 w-full object-cover"
+                        alt="gif"
+                      />
+                    )}
+
+                    <div className="p-4">
+                      <p className="font-semibold mb-1">{wish.name}</p>
+                      <p className="text-sm text-gray-600">{wish.message}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </section>
