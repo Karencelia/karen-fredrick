@@ -37,9 +37,9 @@ const Header = () => {
           className="md:hidden flex flex-col gap-1.5"
           aria-label="Open menu"
         >
-          <span className="w-6 h-0.5 bg-black"></span>
-          <span className="w-6 h-0.5 bg-black"></span>
-          <span className="w-6 h-0.5 bg-black"></span>
+          <span className="w-6 h-0.5 bg-[#05472A]"></span>
+          <span className="w-6 h-0.5 bg-[#05472A]"></span>
+          <span className="w-6 h-0.5 bg-[#05472A]"></span>
         </button>
       </nav>
 
@@ -52,7 +52,7 @@ const Header = () => {
 
       {/* Slide-in Menu */}
       <div
-        className={`fixed top-0 right-0 h-full w-72 bg-white z-50 transform transition-transform duration-300 ${open ? "translate-x-0" : "translate-x-full"
+        className={`fixed top-0 right-0 h-full w-72 bg-red-500 z-50 transform transition-transform duration-300 ${open ? "translate-x-0" : "translate-x-full"
           }`}
       >
         <div className="p-6 flex flex-col gap-6 text-[#05472A] font-medium">
