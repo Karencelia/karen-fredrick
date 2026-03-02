@@ -47,7 +47,7 @@ export default function Rsvp() {
       </div>
 
       {/* Gift Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 mt-20 gap-10">
+      <div id="gifting" className="grid grid-cols-1 md:grid-cols-2 mt-20 gap-10">
         <div className="flex justify-center items-start">
           <h2 className="text-3xl md:text-4xl font-[cursive] text-center mb-10">
             GIFT US

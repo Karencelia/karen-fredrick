@@ -153,32 +153,35 @@ export default function LightsAndLenses() {
           </div>
 
           {/* ================= GALLERY SECTION ================= */}
-          {photos.length > 0 && (
-            <div className="mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-              {photos.map((photo) => (
-                <div
-                  key={photo.id}
-                  className="bg-white shadow-lg rounded-xl overflow-hidden hover:shadow-xl transition"
-                >
-                  <img
-                    src={photo.image_url}
-                    alt={photo.guest_name}
-                    className="w-full h-64 object-cover"
-                  />
-                  <div className="p-4">
-                    <p className="font-semibold text-[#05472A]">
-                      {photo.guest_name}
-                    </p>
-                    {photo.caption && (
-                      <p className="text-sm text-gray-500 mt-1">
-                        {photo.caption}
-                      </p>
-                    )}
+          {/* ================= GALLERY SECTION ================= */}
+          <div className="mt-20">
+            {photos.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                {photos.map((photo) => (
+                  <div
+                    key={photo.id}
+                    className="bg-white shadow-lg rounded-xl overflow-hidden hover:shadow-xl transition"
+                  >
+                    <img
+                      src={photo.image_url}
+                      alt={photo.guest_name}
+                      className="w-full h-64 object-cover"
+                    />
+                    <div className="p-4">
+                      <p className="font-semibold text-[#05472A]">{photo.guest_name}</p>
+                      {photo.caption && (
+                        <p className="text-sm text-gray-500 mt-1">{photo.caption}</p>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          )}
+                ))}
+              </div>
+            ) : (
+              <p className="text-center text-gray-400 mt-10">
+                No photos uploaded yet — be the first to share!
+              </p>
+            )}
+          </div>
 
         </div>
       </div>

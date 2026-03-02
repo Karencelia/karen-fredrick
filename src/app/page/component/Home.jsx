@@ -21,7 +21,6 @@ export default function Page() {
   <div className="absolute inset-0 bg-black/50" />
 
   {/* Content */}
-  {/* Content */}
 <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white px-6">
 
   {/* Inner container to shift content upward on desktop */}

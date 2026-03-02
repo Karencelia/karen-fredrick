@@ -7,21 +7,21 @@ import { motion } from "framer-motion";
    Gallery Categories
 --------------------------------*/
 const galleryData = {
+  "Love in Bloom": ["/bloom1.jpeg", "/bloom2.jpeg", "/bloom3.jpeg"],
+  "Dates": [
+    "/date5.jpeg",
+    "/date4.jpeg",
+    "/date2.jpeg",
+    "/date3.jpeg",
+  ],
   Proposals: [
     "/proposal3.jpeg",
     "/proposal2.jpeg",
     "/proposal-half.jpeg",
     "/proposal5.jpeg",
   ],
-  "Love in Bloom": ["/bloom1.jpeg", "/bloom2.jpeg", "/bloom3.jpeg"],
-  "First Dates": [
-    "/date5.jpeg",
-    "/date4.jpeg",
-    "/date2.jpeg",
-    "/date3.jpeg",
-  ],
-  Adventures: ["/date6.jpeg", "/adventures1.jpeg"],
-  "Marriage Registry": ["/proposal-standing.jpeg"],
+  "Pre-wedding": ["/date6.jpeg", "/adventures1.jpeg"],
+  "Marriage Registry": [],
 };
 
 const rotations = [-5, 3, 2, -3, 4, -2];
