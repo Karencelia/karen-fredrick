@@ -6,12 +6,12 @@ export default function Questions() {
   const [openIndex, setOpenIndex] = useState(null);
 
   const faqs = [
-     {
+    {
       question: "What's your partner's favourite phrase or word to say??",
       answers: [
-      { name: "Fredrick", text: "Wo... I'm tired o 😂" },
-      { name: "Karen", text: "Ome" }
-    ],
+        { name: "Fredrick", text: "Wo... I'm tired o 😂" },
+        { name: "Karen", text: "Ome" }
+      ],
     },
     {
       question: "Using an Expression, how else would you tell your partner 'I Love you!",
@@ -61,9 +61,8 @@ export default function Questions() {
             {faqs.map((faq, index) => (
               <div key={index} className="mb-2">
                 <div
-                  className={`cursor-pointer px-4 py-3 rounded-xl transition-all duration-300 ${
-                    openIndex === index ? "bg-[#f5f6ff] text-[#0c005b] font-bold" : "bg-white text-[#0c005b]"
-                  }`}
+                  className={`cursor-pointer px-4 py-3 rounded-xl transition-all duration-300 ${openIndex === index ? "bg-[#f5f6ff] text-[#0c005b] font-bold" : "bg-white text-[#0c005b]"
+                    }`}
                   onClick={() => toggleAnswer(index)}
                 >
                   <div className="flex justify-between items-center">
@@ -82,18 +81,18 @@ export default function Questions() {
                         transition={{ duration: 0.4, ease: "easeInOut" }}
                         className="overflow-hidden bg-[#f5f6ff] text-[#0c005b] mt-2 rounded-b-xl px-2 py-2"
                       >
-                        <p className="text-sm sm:text-base leading-relaxed font-light text-black text-left">
+                        <div className="text-sm sm:text-base leading-relaxed font-light text-black text-left">
                           {faq.answers.map((ans, i) => (
-  <div key={i} className="mb-2">
-    <p className="font-semibold text-[#0c005b]">
-      {ans.name}'s Response:
-    </p>
-    <p className="text-sm sm:text-base leading-relaxed font-light text-black">
-      {ans.text}
-    </p>
-  </div>
-))}
-                        </p>
+                            <div key={i} className="mb-3">
+                              <p className="font-semibold text-[#0c005b]">
+                                {ans.name}'s Response:
+                              </p>
+                              <p className="text-sm sm:text-base leading-relaxed font-light text-black">
+                                {ans.text}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
                       </motion.div>
                     )}
                   </AnimatePresence>

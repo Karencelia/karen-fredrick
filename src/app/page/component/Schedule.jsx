@@ -2,7 +2,7 @@
 
 export default function Schedule() {
   return (
-    <section id="schedule" className="w-full bg-white py-20 px-6 md:px-20 text-center">
+    <section id="schedule" className="w-full bg-white py-8 px-6 md:px-20 text-center">
       {/* Main Title */}
       <h2 className="text-3xl md:text-5xl tracking-widest font-light mb-12 md:mb-16">
         THE SCHEDULE
