@@ -26,8 +26,10 @@ export default function WeddingWishes() {
 
   /* ================= SAFE GIF HELPER ================= */
   const getGif = (wish) => {
-    if (wish.gif_url) return wish.gif_url;
-    const index = (wish.name?.length || 1) % weddingGifs.length;
+    if (wish?.gif_url && wish.gif_url.trim() !== "") {
+      return wish.gif_url;
+    }
+    const index = (wish?.name?.length || 1) % weddingGifs.length;
     return weddingGifs[index];
   };
 
@@ -68,7 +70,7 @@ export default function WeddingWishes() {
       setLoading(false);
 
       if (res.ok) {
-        setWishes([data, ...wishes]);
+        setWishes((prev) => [data, ...prev]);
         setForm({ name: "", message: "", gif_url: "" });
         setDrawerOpen(false);
         setShowGifPicker(false);
@@ -82,9 +84,12 @@ export default function WeddingWishes() {
   return (
     <section id="well-wishes" className="px-6 py-20 bg-[#f8f8f8]">
       <div className="max-w-4xl mx-auto">
+
         {/* HEADER */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl text-[#05472A] md:text-5xl font-serif">Well Wishes</h2>
+          <h2 className="text-4xl text-[#05472A] md:text-5xl font-serif">
+            Well Wishes
+          </h2>
         </div>
 
         {/* MAIN GRID */}
@@ -121,7 +126,7 @@ export default function WeddingWishes() {
               setDrawerMode("view");
               setDrawerOpen(true);
             }}
-            className="px-8 py-3 border rounded-full cursor-pointer"
+            className="px-8 py-3 border rounded-full"
           >
             VIEW ALL ({wishes.length})
           </button>
@@ -139,105 +144,145 @@ export default function WeddingWishes() {
       </div>
 
       {/* ================= DRAWER ================= */}
-<div
-  className={`fixed inset-0 z-50 transition-opacity duration-300 ${
-    drawerOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-  }`}
->
-  {/* Overlay */}
-  <div
-    onClick={() => setDrawerOpen(false)}
-    className="absolute inset-0 bg-black/40 transition-opacity duration-300"
-  />
+      <div
+        className={`fixed inset-0 z-50 transition-opacity duration-300 ${
+          drawerOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <div
+          onClick={() => setDrawerOpen(false)}
+          className="absolute inset-0 bg-black/40"
+        />
 
-  {/* Drawer Panel */}
-  <div
-    className={`absolute right-0 top-0 h-full w-full md:w-[550px] bg-white overflow-y-auto transform transition-transform duration-300 ease-in-out ${
-      drawerOpen ? "translate-x-0" : "translate-x-full"
-    }`}
-  >
-    {/* HEADER */}
-    <div className="sticky top-0  z-10 flex justify-between items-center p-6 bg-[#FAFAFA]">
-      <h3 className="text-xl font-semibold">
-        {drawerMode === "form" ? "MESSAGE" : "ALL WISHES"}
-      </h3>
+        <div
+          className={`absolute right-0 top-0 h-full w-full md:w-[550px] bg-white overflow-y-auto transform transition-transform duration-300 ${
+            drawerOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <div className="sticky top-0 z-10 flex justify-between items-center p-6 bg-[#FAFAFA]">
+            <h3 className="text-xl font-semibold">
+              {drawerMode === "form" ? "MESSAGE" : "ALL WISHES"}
+            </h3>
+            <button
+              onClick={() => setDrawerOpen(false)}
+              className="text-2xl font-bold text-gray-600"
+            >
+              ✕
+            </button>
+          </div>
+
+          <div className="p-6">
+            {drawerMode === "form" && (
+              <form onSubmit={handleSubmit} className="space-y-6">
+
+                {/* NAME */}
+                <input
+                  required
+                  type="text"
+                  placeholder="Your Name"
+                  value={form.name}
+                  onChange={(e) =>
+                    setForm({ ...form, name: e.target.value })
+                  }
+                  className="w-full border-b p-3 outline-none"
+                />
+
+                {/* MESSAGE */}
+                <div>
+                  <div className="flex justify-between text-xs text-gray-500 mb-1">
+                    <span>MESSAGE</span>
+                    <span>{form.message.length}/140</span>
+                  </div>
+
+                  <textarea
+                    required
+                    rows={5}
+                    maxLength={140}
+                    placeholder="Type message here"
+                    value={form.message}
+                    onChange={(e) =>
+                      setForm({ ...form, message: e.target.value })
+                    }
+                    className="w-full border p-3 resize-none"
+                  />
+                </div>
+
+                {/* GIF SECTION */}
+                {!form.gif_url && (
+                  <button
+                    type="button"
+                    onClick={() => setShowGifPicker(true)}
+                    className="bg-gray-100 px-4 py-2 rounded-full text-sm text-gray-600 hover:bg-gray-200 transition"
+                  >
+                    + Add gif
+                  </button>
+                )}
+
+                {/* SELECTED GIF PREVIEW */}
+                {/* SELECTED GIF PREVIEW */}
+{form.gif_url && (
+  <div className="flex flex-col items-center space-y-4">
+    <img
+      src={form.gif_url}
+      alt="selected gif"
+      className="w-full h-48 object-cover rounded-lg"
+    />
+
+    <div className="flex justify-center gap-4">
+      <button
+        type="button"
+        onClick={() => setShowGifPicker(true)}
+        className="px-5 py-2 text-sm rounded-full border border-gray-400 text-gray-700 hover:bg-gray-100 transition"
+      >
+        Change gif
+      </button>
 
       <button
-        onClick={() => setDrawerOpen(false)}
-        className="text-2xl font-bold text-gray-600 hover:text-black transition"
+        type="button"
+        onClick={() =>
+          setForm({ ...form, gif_url: "" })
+        }
+        className="px-5 py-2 text-sm rounded-full border border-red-400 text-red-500 hover:bg-red-50 transition"
       >
-        ✕
+        Remove gif
       </button>
     </div>
-
-    <div className="p-6">
-      {drawerMode === "view" && (
-        <div className="grid sm:grid-cols-2 md:grid-cols-2 gap-6 space-y-6">
-          {wishes.map((wish) => (
-            <div
-              key={wish.id || wish.created_at}
-              className="relative rounded-xl overflow-hidden"
-            >
-              <img
-                src={getGif(wish)}
-                className="w-full h-56 object-cover"
-                alt="gif"
-              />
-
-              <div className="absolute inset-0 bg-black/40" />
-
-              <div className="absolute bottom-4 left-0 right-0 px-4 text-center text-white">
-                <p className="font-semibold mb-1">{wish.name}</p>
-                <p className="text-sm">{wish.message}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {drawerMode === "form" && (
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <input
-            required
-            type="text"
-            placeholder="Your Name"
-            value={form.name}
-            onChange={(e) => setForm({ ...form, name: e.target.value })}
-            className="w-full border-b p-3 outline-none"
-          />
-
-          <textarea
-            required
-            rows={5}
-            maxLength={140}
-            placeholder="Type message here"
-            value={form.message}
-            onChange={(e) => setForm({ ...form, message: e.target.value })}
-            className="w-full border p-3 resize-none"
-          />
-
-          <button
-            disabled={loading}
-            type="submit"
-            className="w-full py-4 bg-gray-800 text-white rounded-full"
-          >
-            {loading ? "Sending..." : "SEND"}
-          </button>
-        </form>
-      )}
-
-      {/* MOBILE CANCEL BUTTON */}
-      <div className="mt-10 md:hidden">
-        <button
-          onClick={() => setDrawerOpen(false)}
-          className="w-full py-4 border border-gray-400 rounded-full text-gray-700 transition hover:bg-gray-100"
-        >
-          Cancel
-        </button>
-      </div>
-    </div>
   </div>
-</div>
+)}
+
+                {/* GIF PICKER */}
+                {showGifPicker && (
+                  <div className="grid grid-cols-3 gap-3">
+                    {weddingGifs.map((gif) => (
+                      <img
+                        key={gif}
+                        src={gif}
+                        alt="gif option"
+                        onClick={() => {
+                          setForm({ ...form, gif_url: gif });
+                          setShowGifPicker(false);
+                        }}
+                        className="h-24 w-full object-cover rounded-lg cursor-pointer hover:opacity-80 transition"
+                      />
+                    ))}
+                  </div>
+                )}
+
+                {/* SUBMIT */}
+                <button
+                  disabled={loading}
+                  type="submit"
+                  className="w-full py-4 bg-gray-800 text-white rounded-full"
+                >
+                  {loading ? "Sending..." : "SEND"}
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
