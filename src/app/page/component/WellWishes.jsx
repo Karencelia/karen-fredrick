@@ -11,6 +11,9 @@ export default function WeddingWishes() {
     message: "",
     gif_url: "",
   });
+  const launchDate = new Date("2026-03-12T12:30:00+01:00"); // March 12, 2026
+  const now = new Date();
+  const isLive = now >= launchDate;
   const [loading, setLoading] = useState(false);
   const [showGifPicker, setShowGifPicker] = useState(false);
 
@@ -80,6 +83,24 @@ export default function WeddingWishes() {
       setLoading(false);
     }
   };
+
+  if (!isLive) {
+  return (
+    <section id="well-wishes" className="px-6 py-24 bg-[#f8f8f8]">
+      <div className="text-center max-w-2xl mx-auto">
+        <h2 className="text-4xl md:text-5xl font-serif text-[#05472A]">
+          Well Wishes
+        </h2>
+        <p className="mt-6 text-gray-600">
+          This section opens on March 12, 2026 at 12:30 PM 💍✨
+        </p>
+        <p className="mt-2 text-sm text-gray-400 italic">
+          Come back and leave us your beautiful message.
+        </p>
+      </div>
+    </section>
+  );
+}
 
   return (
     <section id="well-wishes" className="px-6 py-20 bg-[#f8f8f8]">

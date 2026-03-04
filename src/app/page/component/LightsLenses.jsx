@@ -6,6 +6,9 @@ export default function LightsAndLenses() {
   /* ===============================
      STATE
   =============================== */
+  const launchDate = new Date("2026-03-12T12:30:00+01:00"); // March 12, 2026
+  const now = new Date();
+  const isLive = now >= launchDate;
   const [photos, setPhotos] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [guestName, setGuestName] = useState("");
@@ -90,6 +93,20 @@ export default function LightsAndLenses() {
   /* ===============================
      RETURN 
   =============================== */
+  if (!isLive) {
+  return (
+    <section id="lights-lenses">
+      <div className="py-24 text-center">
+        <h2 className="text-3xl md:text-4xl font-serif text-[#05472A]">
+          Lights & Lenses
+        </h2>
+        <p className="mt-4 text-gray-600">
+          This gallery will open on March 12, 2026 💍✨
+        </p>
+      </div>
+    </section>
+  );
+}
   return (
     <section id="lights-lenses">
       <div className="py-16 px-6 md:px-16 bg-[#f8f8f8]">

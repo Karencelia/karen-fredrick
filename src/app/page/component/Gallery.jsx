@@ -20,7 +20,7 @@ const galleryData = {
     "/proposal-half.jpeg",
     "/proposal5.jpeg",
   ],
-  "Pre-wedding": ["/date6.jpeg", "/adventures1.jpeg"],
+  "Pre-wedding": ["/prewedding2.jpg", "/prewedding1.jpg","/prewedding3.jpg"],
   "Marriage Registry": [],
 };
 

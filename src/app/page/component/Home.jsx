@@ -12,7 +12,7 @@ export default function Page() {
 >
   {/* Background Image */}
   <img
-    src="/proposal-half.jpeg"
+    src="/preweddingHero.jpeg"
     alt="Wedding Hero"
     className="absolute inset-0 w-full h-full object-cover object-center"
   />

@@ -113,7 +113,12 @@ export default function OurStory() {
 
           <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
             Fast-forward to the day we met for the first time.
-            It was a full K-drama scene 🤣. That day, rain dealt with me properly, I was completely soaked. Like drained of rainwater. We promised to see each other again that say after our meetings but unfortunately my phone got spoilt because of the rain.
+            It was a full K-drama scene 🤣. That day, rain dealt with me properly, I was completely soaked. Like drained of rainwater.
+          </p>
+
+          <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
+            We promised to see each other again that say after our meetings, but unfortunately my phone got spoilt because of the rain. We didn't get to see again.
+            I repaired my phone the next day and saw tons of messages and calls.🤣  
           </p>
 
           <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">

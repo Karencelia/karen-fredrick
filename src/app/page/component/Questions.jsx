@@ -49,7 +49,7 @@ export default function Questions() {
 
   return (
     <section id="questions">
-      <div className="flex flex-col items-center mt-16 lg:mt-5">
+      <div className="flex flex-col items-center mb-10 mt-16 lg:mt-5">
         {/* Removed px-4 from parent and adjusted max-width classes */}
         <div className="w-full px-4 sm:px-0 sm:max-w-[90%] md:max-w-[75%] text-left sm:text-center">
           <h2 className="text-4xl md:text-5xl text-[#0c005b] px-4 sm:px-0">
