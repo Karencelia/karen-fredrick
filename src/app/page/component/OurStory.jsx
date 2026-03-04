@@ -91,23 +91,29 @@ export default function OurStory() {
 
         <div className="mb-5">
           <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
-            Well, we met on Facebook (thank you, Mark Zuckerberg). Around the time he texted me,
+            Well, like he said, we met on Facebook. Around the time he texted me,
             I wasn’t really active on Facebook.
           </p>
 
           <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
             So yes, he sent me a DM on Facebook. When I saw it, my first thought was,
-            “Ah ah… these men again.”
+            “Ah ah… these men again. Let’s see what this one has to say.”
           </p>
 
           <p className="text-[16px] md:text-[18px] text-gray-700 mb-4">
             But there was something about his opening line that stuck with me.
             He said: “I’m here because I’m curious.”
+            In my mind I was like, Curious about what exactly? 😂 You know how these things usually start—na so them dey start; let’s see how it ends.
+            I’ve never really been the type to believe in social-media love stories, so I wasn’t expecting anything special at all.
+
+            Little did I know… something was already cooking 🌚
+
+            Not long after, he suggested we move the conversation to WhatsApp since neither of us really used Facebook much. Funny enough, I didn’t hesitate to give him my number—very unlike me, because I’m usually not quick to share my number in first chats. But somehow… it felt okay.
           </p>
 
           <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
             Fast-forward to the day we met for the first time.
-            It was a full K-drama scene 🤣.
+            It was a full K-drama scene 🤣. That day, rain dealt with me properly, I was completely soaked. Like drained of rainwater. We promised to see each other again that say after our meetings but unfortunately my phone got spoilt because of the rain.
           </p>
 
           <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
