@@ -14,7 +14,7 @@ import Questions from './page/component/Questions'
 import Schedule from './page/component/Schedule'
 import Rsvp from './page/component/Rsvp'
 import WeddingWishes from './page/component/WellWishes'
-import WeddingRegistry from './page/component/WeddingRegistry'
+//import WeddingRegistry from './page/component/WeddingRegistry'
 
 
 export default function OnePage() {
@@ -48,7 +48,6 @@ export default function OnePage() {
           <WeddingWishes />
           <LightsLenses />
           <Schedule />
-          <WeddingRegistry />
           <Rsvp />
         </>
       )}
