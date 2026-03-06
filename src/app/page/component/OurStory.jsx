@@ -118,7 +118,7 @@ export default function OurStory() {
 
           <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
             We promised to see each other again that say after our meetings, but unfortunately my phone got spoilt because of the rain. We didn't get to see again.
-            I repaired my phone the next day and saw tons of messages and calls.🤣  
+            I repaired my phone the next day and saw tons of messages and calls.🤣 Anyways we started talking again and....  
           </p>
 
           <p className="text-[16px] md:text-[18px] text-gray-700 mb-2">
