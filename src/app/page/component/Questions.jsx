@@ -31,7 +31,7 @@ export default function Questions() {
       question: "Your favourite memory of him/her?",
       answers: [
         { name: "Fredrick", text: "First Day I saw her - In the Rain 🌧️" },
-        { name: "Karen", text: "" },
+        { name: "Karen", text: "Our second date" },
       ],
     },
     {
