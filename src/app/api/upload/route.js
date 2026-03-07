@@ -9,11 +9,6 @@ cloudinary.config({
 });
 
 export async function POST(req) {
-
-  console.log("Cloud Name:", process.env.CLOUDINARY_CLOUD_NAME);
-console.log("API Key:", process.env.CLOUDINARY_API_KEY);
-console.log("API Secret:", process.env.CLOUDINARY_API_SECRET);
-
   try {
     const data = await req.json();
 
@@ -24,12 +19,38 @@ console.log("API Secret:", process.env.CLOUDINARY_API_SECRET);
       );
     }
 
-    // Upload base64 image to Cloudinary
- const uploadResponse = await cloudinary.uploader.upload(data.image, {
-  folder: "wedding-gallery",
-});
+    /* ===== get and normalize IP ===== */
+    let ip =
+      req.headers.get("x-forwarded-for") ||
+      req.headers.get("x-real-ip") ||
+      "unknown";
 
-    // Save metadata to Supabase
+    // take first IP if there are multiple
+    if (ip.includes(",")) {
+      ip = ip.split(",")[0].trim();
+    }
+
+    /* ===== check upload limit ===== */
+    const { data: existing, error: countError } = await supabase
+      .from("photos")
+      .select("id")
+      .eq("ip_address", ip);
+
+    if (countError) throw countError;
+
+    if (existing.length >= 2) {
+      return NextResponse.json(
+        { error: "You can only upload 2 photos per IP address" },
+        { status: 403 }
+      );
+    }
+
+    // Upload base64 image to Cloudinary
+    const uploadResponse = await cloudinary.uploader.upload(data.image, {
+      folder: "wedding-gallery",
+    });
+
+    // Save metadata to Supabase with IP address
     const { data: photo, error } = await supabase
       .from("photos")
       .insert([
@@ -37,6 +58,8 @@ console.log("API Secret:", process.env.CLOUDINARY_API_SECRET);
           image_url: uploadResponse.secure_url,
           guest_name: data.guestName,
           caption: data.caption || null,
+          ip_address: ip, // Add IP address to the record
+          created_at: new Date().toISOString(),
         },
       ])
       .select()
